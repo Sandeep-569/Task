@@ -1192,7 +1192,7 @@
       appId: "1:117915873119:web:4a3f6d44b87aba307110ea"
     };
 
-    let app, auth, db, currentUser = null, unsubSnap = null;
+    let app, auth, db, currentUser = null, unsubSnap = null, _isSavingToCloud = false;
 
     try {
       app = initializeApp(firebaseConfig);
@@ -1216,9 +1216,11 @@
           if (unsubSnap) unsubSnap();
           const ref = doc(db, 'users', user.uid, 'data', 'tasks');
           unsubSnap = onSnapshot(ref, snap => {
+            if (_isSavingToCloud) return; // ignore echoes from our own saves
             if (snap.exists()) {
               S.tasks = snap.data().tasks || {};
-              save(); refresh();
+              localStorage.setItem('tf_tasks', JSON.stringify(S.tasks));
+              refresh();
             }
           });
         } else {
@@ -1250,9 +1252,11 @@
       window._saveToCloud = async (tasks) => {
         if (!currentUser || !db) return;
         try {
+          _isSavingToCloud = true;
           const ref = doc(db, 'users', currentUser.uid, 'data', 'tasks');
           await setDoc(ref, { tasks, updatedAt: new Date().toISOString() });
-        } catch (e) { console.warn('Cloud save failed:', e); }
+          setTimeout(() => { _isSavingToCloud = false; }, 1500);
+        } catch (e) { _isSavingToCloud = false; console.warn('Cloud save failed:', e); }
       };
 
     } catch (e) {
