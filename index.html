@@ -2940,8 +2940,11 @@
           unsubSnap = onSnapshot(ref, snap => {
             if (_isSavingToCloud) return; // ignore echoes from our own saves
             if (snap.exists()) {
-              S.tasks = snap.data().tasks || {};
-              localStorage.setItem('tf_tasks', JSON.stringify(S.tasks));
+              const cloudTasks = snap.data().tasks || {};
+              const localTasks = JSON.parse(localStorage.getItem('tf_tasks') || '{}');
+              const merged = { ...localTasks, ...cloudTasks }; // cloud wins on conflict
+              localStorage.setItem('tf_tasks', JSON.stringify(merged));
+              S.tasks = merged;
               refresh();
             }
           });
