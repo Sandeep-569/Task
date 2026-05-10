@@ -4500,10 +4500,22 @@
     updateExamBadge();
     // ── REGISTER SERVICE WORKER (PWA) ──
     if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/Task/sw.js')
-          .then(() => console.log('TaskFlow PWA ready ✅'))
-          .catch(e => console.warn('SW failed:', e));
+        navigator.serviceWorker.register('/Task/sw.js').then(reg => {
+          console.log('TaskFlow PWA ready ✅');
+          reg.addEventListener('updatefound', () => {
+            const newSW = reg.installing;
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                newSW.postMessage('SKIP_WAITING');
+              }
+            });
+          });
+        }).catch(e => console.warn('SW failed:', e));
       });
     }
   </script>

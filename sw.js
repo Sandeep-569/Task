@@ -7,7 +7,7 @@ const ASSETS = [
   'https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:wght@400;500;600&display=swap',
 ];
 
-// Install — cache all assets
+// ── INSTALL ──
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
@@ -15,7 +15,7 @@ self.addEventListener('install', e => {
   self.skipWaiting();
 });
 
-// Activate — clean old caches
+// ── ACTIVATE ──
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -25,9 +25,8 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
-// Fetch — serve from cache, fallback to network
+// ── FETCH — Stale While Revalidate ──
 self.addEventListener('fetch', e => {
-  // Skip Firebase/Google requests — always need network
   if (
     e.request.url.includes('firebase') ||
     e.request.url.includes('googleapis') ||
@@ -37,20 +36,41 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(response => {
-        // Cache new requests dynamically
-        if (response && response.status === 200 && response.type === 'basic') {
+  // HTML pages — Network first, cache fallback
+  if (e.request.destination === 'document') {
+    e.respondWith(
+      fetch(e.request)
+        .then(response => {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
-        }
-        return response;
-      }).catch(() => {
-        // Offline fallback — return main page
-        return caches.match('/Task/index.html');
+          return response;
+        })
+        .catch(() => caches.match(e.request).then(c => c || caches.match('/Task/index.html')))
+    );
+    return;
+  }
+
+  // Everything else — Stale while revalidate
+  // Serve cache immediately, update cache in background
+  e.respondWith(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.match(e.request).then(cached => {
+        const networkFetch = fetch(e.request).then(response => {
+          if (response && response.status === 200) {
+            cache.put(e.request, response.clone());
+          }
+          return response;
+        }).catch(() => null);
+
+        return cached || networkFetch;
       });
     })
   );
+});
+
+// ── AUTO UPDATE — notify app when new SW is waiting ──
+self.addEventListener('message', e => {
+  if (e.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
