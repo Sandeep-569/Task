@@ -2,7 +2,7 @@
   "name": "TaskFlow — Monthly Planner",
   "short_name": "TaskFlow",
   "description": "Your personal monthly task planner with Pomodoro timer and Exam tracker",
-  "start_url": "/Task/task_planner.html",
+  "start_url": "/Task/index.html",
   "scope": "/Task/",
   "display": "standalone",
   "orientation": "portrait-primary",

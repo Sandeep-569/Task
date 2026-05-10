@@ -1,6 +1,6 @@
 const CACHE_NAME = 'taskflow-v1';
 const ASSETS = [
-  '/Task/task_planner.html',
+  '/Task/index.html',
   '/Task/manifest.json',
   '/Task/icon-192.png',
   '/Task/icon-512.png',
