@@ -49,7 +49,7 @@ self.addEventListener('fetch', e => {
         return response;
       }).catch(() => {
         // Offline fallback — return main page
-        return caches.match('/Task/task_planner.html');
+        return caches.match('/Task/index.html');
       });
     })
   );
