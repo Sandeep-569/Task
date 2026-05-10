@@ -2098,15 +2098,18 @@
     .pomo-axis-chart {
       display: flex;
       gap: 0;
+      align-items: flex-start;
     }
 
     .pomo-y-axis {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding-bottom: 28px;
+      height: 160px;
+      padding-bottom: 0;
       padding-right: 8px;
       min-width: 36px;
+      flex-shrink: 0;
     }
 
     .pomo-y-label {
@@ -2120,7 +2123,8 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: visible;
+      min-width: 0;
     }
 
     .pomo-scroll-area {
@@ -2159,6 +2163,7 @@
       gap: 2px;
       padding: 8px 4px 0 4px;
       min-height: 160px;
+      height: 160px;
     }
 
     .pomo-grid-line {
@@ -2168,19 +2173,9 @@
       border-top: 1px dashed rgba(255, 255, 255, 0.05);
     }
 
-    .pomo-col {
-      width: 28px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-      position: relative;
-    }
-
     .pomo-col-bar {
-      width: 20px;
+      width: 22px;
+      min-height: 2px;
       border-radius: 3px 3px 0 0;
       transition: height .5s cubic-bezier(.4, 0, .2, 1);
       cursor: pointer;
@@ -2335,6 +2330,7 @@
 
       .pomo-grid-lines {
         min-height: 100px;
+        height: 100px;
       }
     }
 
