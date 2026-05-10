@@ -1,0 +1,25 @@
+{
+  "name": "TaskFlow — Monthly Planner",
+  "short_name": "TaskFlow",
+  "description": "Your personal monthly task planner with Pomodoro timer and Exam tracker",
+  "start_url": "/Task/task_planner.html",
+  "scope": "/Task/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0a",
+  "theme_color": "#e8ff47",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
