@@ -8,7 +8,7 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#e8ff47">
+  <meta name="theme-color" content="#7c5cfc">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="TaskFlow">
@@ -207,7 +207,7 @@
       border: 1px solid var(--border2);
       border-radius: 12px;
       padding: 10px;
-      min-width: 200px;
+      min-width: 230px;
       z-index: 999;
       display: none;
       box-shadow: 0 8px 32px rgba(0, 0, 0, .5);
@@ -320,9 +320,6 @@
       border-color: var(--accent);
     }
 
-    .user-menu {
-      min-width: 230px;
-    }
 
     /* ── BODY LAYOUT ── */
     .app-body {
@@ -2839,6 +2836,53 @@
         font-size: 0.72rem;
       }
     }
+    /* Exam edit button */
+    .exam-edit-btn{background:none;border:none;cursor:pointer;font-size:0.8rem;padding:4px 6px;border-radius:6px;transition:all .15s;opacity:0;}
+    .exam-row:hover .exam-edit-btn{opacity:1;}
+    .exam-edit-btn:hover{background:rgba(232,255,71,.1);}
+    @media(hover:none){.exam-edit-btn{opacity:0.5;}}
+
+    /* ── HABIT TRACKER ── */
+    .hview{display:none;padding:20px;max-width:1100px;margin:0 auto;width:100%;overflow-x:hidden;}
+    .hview.on{display:block;}
+    .habit-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:24px;}
+    .habit-form-title{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
+    .habit-form-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;align-items:end;}
+    .habit-field{display:flex;flex-direction:column;gap:5px;}
+    .habit-field label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+    .habit-input{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:9px 12px;color:var(--text);font-family:'Epilogue',sans-serif;font-size:0.85rem;outline:none;transition:border-color .15s;width:100%;}
+    .habit-input:focus{border-color:var(--accent);}
+    .habit-input::placeholder{color:var(--muted2);}
+    .habit-add-btn{background:var(--accent);border:none;border-radius:10px;padding:10px 18px;color:#000;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;transition:transform .1s;white-space:nowrap;}
+    .habit-add-btn:hover{transform:scale(1.02);}
+    /* Grid tracker */
+    .habit-grid-wrap{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+    .habit-grid-wrap::-webkit-scrollbar{height:3px;}
+    .habit-grid-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+    .habit-grid{display:flex;flex-direction:column;width:max-content;min-width:100%;}
+    .habit-grid-header{display:flex;}
+    .habit-grid-row{display:flex;}
+    .hg-cell{padding:6px 4px;text-align:center;font-size:0.72rem;border-bottom:1px solid var(--border);}
+    .hg-name{padding:8px 14px;font-size:0.82rem;font-weight:600;color:var(--text);border-bottom:1px solid var(--border);position:sticky;left:0;background:var(--bg);z-index:2;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
+    .hg-date{padding:6px 4px;font-size:0.6rem;color:var(--muted);text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;}
+    .hg-date.today-col{color:var(--accent);font-weight:700;}
+    .hg-date.out-range{opacity:0.25;}
+    .hg-check{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border2);background:none;cursor:pointer;margin:auto;display:flex;align-items:center;justify-content:center;font-size:0.75rem;transition:all .15s;color:transparent;}
+    .hg-check:hover{border-color:var(--accent3);}
+    .hg-check.checked{background:var(--accent3);border-color:var(--accent3);color:#000;}
+    .hg-check.out-range{opacity:0.2;pointer-events:none;cursor:default;}
+    .hg-actions{padding:6px 8px;border-bottom:1px solid var(--border);display:flex;gap:4px;align-items:center;position:sticky;right:0;background:var(--bg);}
+    .hg-del{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:0.75rem;padding:4px 6px;border-radius:5px;transition:all .15s;}
+    .hg-del:hover{color:var(--accent2);background:rgba(255,107,107,.1);}
+    .hg-streak{font-size:0.6rem;color:var(--accent4);font-weight:700;white-space:nowrap;}
+    .hg-pct{font-size:0.6rem;color:var(--accent3);font-weight:700;}
+    .habit-empty{text-align:center;padding:40px;color:var(--muted);font-size:0.85rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+    .habit-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+    .habit-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+    .habit-stat-n{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;}
+    .habit-stat-l{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+    @media(max-width:768px){.habit-form-grid{grid-template-columns:1fr 1fr;}.habit-stats-row{grid-template-columns:1fr 1fr;}.hview{padding:14px;}}
+    @media(max-width:480px){.habit-form-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 
@@ -2861,6 +2905,9 @@
       </button>
       <button class="tab-btn" id="tabE" onclick="switchTab('exam')">
         <span class="tab-icon">📝</span><span class="tab-text"> Exams</span>
+      </button>
+      <button class="tab-btn" id="tabH" onclick="switchTab('habit')">
+        <span class="tab-icon">🔥</span><span class="tab-text"> Habits</span>
       </button>
       <!-- Auth area -->
       <div id="authArea">
@@ -2898,9 +2945,6 @@
         <div>
           <label style="font-size:0.7rem;color:var(--muted);display:block;margin-bottom:6px">Year</label>
           <select class="ts" id="moveDateYear" style="width:100%;padding:8px 10px;font-size:0.8rem">
-            <option value="2025">2025</option>
-            <option value="2026" selected>2026</option>
-            <option value="2027">2027</option>
           </select>
         </div>
       </div>
@@ -2910,6 +2954,49 @@
       </div>
       <button class="auth-btn" onclick="closeMoveDateModal()"
         style="margin-top:16px;width:100%;justify-content:center;background:var(--surface3)">Cancel</button>
+    </div>
+  </div>
+
+  <!-- EDIT EXAM MODAL -->
+  <div class="modal-bg" id="editExamBg" onclick="closeEditExam()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width:380px">
+      <div class="modal-title">✏️ Edit Exam</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="exam-field">
+          <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Exam Name</label>
+          <input class="exam-input" id="editExamName" placeholder="Exam name">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="exam-field">
+            <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Type</label>
+            <select class="exam-type-select" id="editExamType">
+              <option value="Mid-term">Mid-term</option>
+              <option value="End-term">End-term</option>
+              <option value="Lab">Lab</option>
+              <option value="Viva">Viva</option>
+              <option value="Assignment">Assignment</option>
+            </select>
+          </div>
+          <div class="exam-field">
+            <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Date</label>
+            <input class="exam-input" id="editExamDate" type="date">
+          </div>
+        </div>
+        <div class="exam-field">
+          <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Time</label>
+          <div class="exam-time-row">
+            <input class="exam-input" id="editExamTime" type="time" style="flex:1">
+            <label class="exam-tbd">
+              <input type="checkbox" id="editExamTimeTbd" onchange="toggleEditTimeTbd()">
+              Time TBD
+            </label>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+          <button class="auth-btn" onclick="closeEditExam()" style="justify-content:center;background:var(--surface3)">Cancel</button>
+          <button class="exam-add-btn" onclick="saveEditExam()" style="margin-top:0">Save Changes</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2996,6 +3083,7 @@
         <div class="rview" id="rview"></div>
         <div class="pview" id="pview"></div>
         <div class="eview" id="eview"></div>
+        <div class="hview" id="hview"></div>
       </div>
     </div>
   </div>
@@ -3166,11 +3254,12 @@
     };
 
     // ── STATE ──
+    const _savedNav = JSON.parse(localStorage.getItem('tf_nav') || 'null');
     let S = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      week: 0,
-      tab: 'week',
+      year: _savedNav?.year ?? new Date().getFullYear(),
+      month: _savedNav?.month ?? new Date().getMonth(),
+      week: _savedNav?.week ?? 0,
+      tab: _savedNav?.tab ?? 'week',
       tasks: JSON.parse(localStorage.getItem('tf_tasks') || '{}'),
     };
 
@@ -3178,8 +3267,12 @@
     let sidebarOpen = window.innerWidth > 768;
 
     // ── HELPERS ──
+    function saveNav() {
+      localStorage.setItem('tf_nav', JSON.stringify({ year: S.year, month: S.month, week: S.week, tab: S.tab }));
+    }
     function save() {
       localStorage.setItem('tf_tasks', JSON.stringify(S.tasks));
+      saveNav();
       if (window._saveToCloud) window._saveToCloud(S.tasks);
     }
     function dKey(y, m, d) { return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
@@ -3283,9 +3376,9 @@
     }
 
     function adjustColor(hex, amount) {
-      const r = Math.min(255, parseInt(hex.slice(1, 3), 16) + amount);
-      const g = Math.min(255, parseInt(hex.slice(3, 5), 16) + amount);
-      const b = Math.min(255, parseInt(hex.slice(5, 7), 16) + amount);
+      const r = Math.max(0, Math.min(255, parseInt(hex.slice(1, 3), 16) + amount));
+      const g = Math.max(0, Math.min(255, parseInt(hex.slice(3, 5), 16) + amount));
+      const b = Math.max(0, Math.min(255, parseInt(hex.slice(5, 7), 16) + amount));
       return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
     }
 
@@ -3370,7 +3463,7 @@
           const dot = document.createElement('div'); dot.className = 'dot'; b.appendChild(dot);
         }
         b.appendChild(document.createTextNode(nm.slice(0, 3)));
-        b.onclick = () => { S.month = i; S.week = 0; refresh(); };
+        b.onclick = () => { S.month = i; S.week = 0; refresh(); saveNav(); };
         mg.appendChild(b);
       });
 
@@ -3387,8 +3480,8 @@
         const pct = tot > 0 ? Math.round(dn / tot * 100) : 0;
         const el = document.createElement('div');
         el.className = 'wi' + (wi === S.week ? ' active' : '');
-        el.innerHTML = `<div class="wi-label">Week ${w.wn} <span style="font-weight:400;color:var(--muted);font-size:0.65rem">(${w.start}–${w.end})</span></div><div class="wi-dates">${MONTHS[S.month].slice(0, 3)} ${w.start} – ${MONTHS[S.month].slice(0, 3)} ${w.end}</div><div class="wi-pbar"><div class="wi-pfill" style="width:${pct}%"></div></div>`;
-        el.onclick = () => { S.week = wi; switchTab('week'); refresh(); if (window.innerWidth <= 768) closeSidebarMobile(); };
+        el.innerHTML = `<div class="wi-label">Week ${w.wn} <span style="font-weight:400;color:var(--muted);font-size:0.65rem">(${w.start}–${w.end})</span></div><div class="wi-dates">${MONTHS[S.month].slice(0, 3)} ${w.start} – ${MONTHS[S.month].slice(0, 3)} ${w.end}</div><div class="wi-pbar"><div class="wi-pfill" id="wfill-${wi}" style="width:${pct}%"></div></div>`;
+        el.onclick = () => { S.week = wi; switchTab('week'); refresh(); saveNav(); if (window.innerWidth <= 768) closeSidebarMobile(); };
         wl.appendChild(el);
       });
     }
@@ -3490,8 +3583,6 @@
       if (!tasks.length) { container.innerHTML = `<div class="no-t">No tasks yet</div>`; return; }
       container.innerHTML = '';
       tasks.forEach(t => {
-        const div = document.createElement('div');
-        div.outerHTML; // just for the createElement pattern
         container.insertAdjacentHTML('beforeend', taskItemHTML(t));
       });
     }
@@ -3562,21 +3653,19 @@
       document.getElementById('tabR').classList.toggle('active', t === 'remaining');
       document.getElementById('tabP').classList.toggle('active', t === 'pomodoro');
       document.getElementById('tabE').classList.toggle('active', t === 'exam');
+      document.getElementById('tabH').classList.toggle('active', t === 'habit');
       document.getElementById('wview').classList.toggle('on', t === 'week');
       document.getElementById('rview').classList.toggle('on', t === 'remaining');
       document.getElementById('pview').classList.toggle('on', t === 'pomodoro');
       document.getElementById('eview').classList.toggle('on', t === 'exam');
-      if (t === 'pomodoro') {
-        renderPomodoro();
-        if (window.innerWidth <= 768) closeSidebarMobile();
-      }
-      if (t === 'exam') {
-        renderExam();
-        if (window.innerWidth <= 768) closeSidebarMobile();
-      }
+      document.getElementById('hview').classList.toggle('on', t === 'habit');
+      if (t === 'pomodoro') { renderPomodoro(); if (window.innerWidth <= 768) closeSidebarMobile(); }
+      if (t === 'exam')     { renderExam();    if (window.innerWidth <= 768) closeSidebarMobile(); }
+      if (t === 'habit')    { renderHabit();   if (window.innerWidth <= 768) closeSidebarMobile(); }
+      saveNav();
     }
 
-    function chYear(d) { S.year += d; S.week = 0; refresh(); }
+    function chYear(d) { S.year += d; S.week = 0; refresh(); saveNav(); }
 
     function addT(dk) {
       const inp = document.getElementById('ai-' + dk);
@@ -3733,11 +3822,20 @@
       // Set preview text
       document.getElementById('moveTaskPreview').textContent = `"${taskText}" — currently on ${sourceDk}`;
 
+      // Populate year options dynamically around current year
+      const yearSel = document.getElementById('moveDateYear');
+      const curYear = new Date().getFullYear();
+      yearSel.innerHTML = '';
+      for (let y = curYear - 1; y <= curYear + 3; y++) {
+        const opt = document.createElement('option');
+        opt.value = y; opt.textContent = y;
+        if (y === S.year) opt.selected = true;
+        yearSel.appendChild(opt);
+      }
+
       // Set month/year selectors to current state
       const monthSel = document.getElementById('moveDateMonth');
-      const yearSel = document.getElementById('moveDateYear');
       monthSel.value = S.month;
-      yearSel.value = S.year;
 
       // Build day grid
       buildMoveDayGrid();
@@ -3825,8 +3923,8 @@
         let tot = 0, dn = 0;
         w.days.forEach(d => { const ts = getTasksFor(dKey(S.year, S.month, d)); tot += ts.length; dn += ts.filter(t => t.done).length; });
         const pct = tot > 0 ? Math.round(dn / tot * 100) : 0;
-        const fills = document.querySelectorAll('.wi-pfill');
-        if (fills[wi]) fills[wi].style.width = pct + '%';
+        const fill = document.getElementById('wfill-' + wi);
+        if (fill) fill.style.width = pct + '%';
       });
       // Update month dots
       MONTHS.forEach((nm, i) => {
@@ -3990,6 +4088,8 @@
         const isLong = PS.sessionsDone > 0 && PS.sessionsDone % PS.sessionsBeforeLong === 0;
         PS.mode = isLong ? 'long' : 'short';
       } else {
+        // After a long break, reset the round counter
+        if (PS.mode === 'long') PS.sessionsDone = 0;
         PS.mode = 'work';
       }
       PS.secondsLeft = pomoTotalSecs();
@@ -4463,7 +4563,7 @@
         const d = new Date(today); d.setDate(d.getDate() - i);
         const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
         if (PS.history[k] && PS.history[k].pomodoros > 0) streak++;
-        else if (i > 0) break;
+        else break;
       }
       return streak;
     }
@@ -4498,13 +4598,20 @@
 
     refresh();
 
-    // Auto-select current week
-    const now = new Date();
-    if (S.year === now.getFullYear() && S.month === now.getMonth()) {
-      const weeks = getWeeks(S.year, S.month);
-      const nd = now.getDate();
-      const wi = weeks.findIndex(w => w.days.includes(nd));
-      if (wi !== -1) { S.week = wi; refresh(); }
+    // Restore saved tab
+    if (_savedNav?.tab && _savedNav.tab !== 'week') {
+      switchTab(_savedNav.tab);
+    }
+
+    // Auto-select current week only if no saved navigation
+    if (!_savedNav) {
+      const now = new Date();
+      if (S.year === now.getFullYear() && S.month === now.getMonth()) {
+        const weeks = getWeeks(S.year, S.month);
+        const nd = now.getDate();
+        const wi = weeks.findIndex(w => w.days.includes(nd));
+        if (wi !== -1) { S.week = wi; refresh(); saveNav(); }
+      }
     }
 
     // ══════════════════════════════════════════
@@ -4534,7 +4641,7 @@
       if (!tabE) return;
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const upcoming = EX.filter(e => {
-        const d = new Date(e.date); d.setHours(0, 0, 0, 0);
+        const d = parseLocalDate(e.date);
         return d >= today;
       }).length;
       const txt = tabE.querySelector('.tab-text');
@@ -4544,14 +4651,15 @@
 
     function examCountdown(dateStr) {
       const today = new Date(); today.setHours(0, 0, 0, 0);
-      const exam = new Date(dateStr); exam.setHours(0, 0, 0, 0);
+      const [ey, em, ed] = dateStr.split('-').map(Number);
+      const exam = new Date(ey, em - 1, ed);
       const diff = Math.round((exam - today) / 86400000);
       if (diff < 0) return { label: Math.abs(diff) + 'd ago', cls: 'past' };
       if (diff === 0) return { label: 'Today! 🔴', cls: 'today-exam' };
       if (diff === 1) return { label: 'Tomorrow!', cls: 'urgent' };
       if (diff <= 3) return { label: 'in ' + diff + ' days', cls: 'urgent' };
       if (diff <= 7) return { label: 'in ' + diff + ' days', cls: 'soon' };
-      return { label: 'in ' + diff + ' days', cls: 'normal' };
+      return { label: 'in ' + diff + ' days', cls: 'ok' };
     }
 
     function addExam() {
@@ -4564,8 +4672,8 @@
       if (!name) { showToastMsg('⚠️ Please enter exam name'); return; }
       if (!date) { showToastMsg('⚠️ Please select exam date'); return; }
 
-      EX.push({ id: uid(), name, date, type, time });
-      EX.sort((a, b) => new Date(a.date) - new Date(b.date));
+      EX.push({ id: uid(), name, date, type, time, tbd });
+      EX.sort((a, b) => parseLocalDate(a.date) - parseLocalDate(b.date));
       saveExams();
       document.getElementById('examName').value = '';
       document.getElementById('examDate').value = '';
@@ -4599,7 +4707,7 @@
       // Build exam map for this month
       const examMap = {};
       EX.forEach(e => {
-        const d = new Date(e.date);
+        const d = parseLocalDate(e.date);
         if (d.getFullYear() === examCalYear && d.getMonth() === examCalMonth) {
           const day = d.getDate();
           if (!examMap[day]) examMap[day] = [];
@@ -4661,25 +4769,28 @@
       if (!ev) return;
 
       const today = new Date(); today.setHours(0, 0, 0, 0);
-      const upcoming = EX.filter(e => { const d = new Date(e.date); d.setHours(0, 0, 0, 0); return d >= today; });
-      const past = EX.filter(e => { const d = new Date(e.date); d.setHours(0, 0, 0, 0); return d < today; });
+      const upcoming = EX.filter(e => { const d = parseLocalDate(e.date); return d >= today; });
+      const past = EX.filter(e => { const d = parseLocalDate(e.date); return d < today; });
 
       function tableRows(list) {
         if (!list.length) return '';
         return list.map(e => {
           const tc = EXAM_TYPES[e.type] || EXAM_TYPES['Mid-term'];
           const cd = examCountdown(e.date);
-          const d = new Date(e.date);
+          const d = parseLocalDate(e.date);
           const dateStr = `${DAYS_SHORT[d.getDay()]}, ${MONTHS[d.getMonth()].slice(0, 3)} ${d.getDate()}, ${d.getFullYear()}`;
-          const timeStr = e.time ? e.time : '<span style="color:var(--muted);font-size:0.72rem">TBD</span>';
+          const timeStr = e.time ? `<span style="color:var(--text)">${e.time}</span>` : '<span style="color:var(--muted);font-size:0.72rem">TBD</span>';
           return `<tr class="exam-row">
-        <td class="exam-name-cell">${esc(e.name)}</td>
-        <td><span class="exam-type-pill" style="background:${tc.bg};color:${tc.c}">${e.type}</span></td>
-        <td style="white-space:nowrap">${dateStr}</td>
-        <td>${timeStr}</td>
-        <td><span class="exam-countdown ${cd.cls}">${cd.label}</span></td>
-        <td><button class="exam-del-btn" onclick="delExam('${e.id}')">✕</button></td>
-      </tr>`;
+            <td class="exam-name-cell" style="color:var(--text)">${esc(e.name)}</td>
+            <td><span class="exam-type-pill" style="background:${tc.bg};color:${tc.c}">${e.type}</span></td>
+            <td style="white-space:nowrap;color:var(--text)">${dateStr}</td>
+            <td>${timeStr}</td>
+            <td><span class="exam-countdown ${cd.cls}">${cd.label}</span></td>
+            <td style="display:flex;gap:4px;align-items:center">
+              <button class="exam-edit-btn" onclick="openEditExam('${e.id}')" title="Edit">✏️</button>
+              <button class="exam-del-btn" onclick="delExam('${e.id}')">✕</button>
+            </td>
+          </tr>`;
         }).join('');
       }
 
@@ -4754,6 +4865,265 @@
 
     // Init exam badge on load
     updateExamBadge();
+
+    // ── EDIT EXAM ──
+    let _editExamId = null;
+    function openEditExam(id){
+      const e = EX.find(x=>x.id===id);
+      if(!e) return;
+      _editExamId = id;
+      document.getElementById('editExamName').value = e.name;
+      document.getElementById('editExamType').value = e.type;
+      document.getElementById('editExamDate').value = e.date;
+      document.getElementById('editExamTime').value = e.time||'';
+      document.getElementById('editExamTimeTbd').checked = !e.time;
+      document.getElementById('editExamTime').disabled = !e.time;
+      document.getElementById('editExamBg').classList.add('show');
+    }
+    function closeEditExam(){
+      document.getElementById('editExamBg').classList.remove('show');
+      _editExamId = null;
+    }
+    function toggleEditTimeTbd(){
+      const tbd = document.getElementById('editExamTimeTbd').checked;
+      document.getElementById('editExamTime').disabled = tbd;
+      if(tbd) document.getElementById('editExamTime').value='';
+    }
+    function saveEditExam(){
+      if(!_editExamId) return;
+      const idx = EX.findIndex(x=>x.id===_editExamId);
+      if(idx===-1) return;
+      const name = document.getElementById('editExamName').value.trim();
+      const date = document.getElementById('editExamDate').value;
+      const type = document.getElementById('editExamType').value;
+      const tbd  = document.getElementById('editExamTimeTbd').checked;
+      const time = tbd ? null : document.getElementById('editExamTime').value;
+      if(!name){ showToastMsg('⚠️ Exam name required'); return; }
+      if(!date){ showToastMsg('⚠️ Date required'); return; }
+      EX[idx] = {...EX[idx], name, date, type, time, tbd};
+      EX.sort((a,b)=>parseLocalDate(a.date)-parseLocalDate(b.date));
+      saveExams();
+      closeEditExam();
+      renderExam();
+      showToastMsg('✅ Exam updated!');
+    }
+
+    // ══════════════════════════════════════════
+    // ── HABIT TRACKER ENGINE ──
+    // ══════════════════════════════════════════
+    const HABIT_KEY = 'tf_habits';
+    let HB = JSON.parse(localStorage.getItem(HABIT_KEY)||'[]');
+
+    function saveHabits(){
+      localStorage.setItem(HABIT_KEY, JSON.stringify(HB));
+    }
+
+    function addHabit(){
+      const name  = document.getElementById('habitName').value.trim();
+      const start = document.getElementById('habitStart').value;
+      const end   = document.getElementById('habitEnd').value;
+      if(!name)  { showToastMsg('⚠️ Enter habit name'); return; }
+      if(!start) { showToastMsg('⚠️ Select start date'); return; }
+      if(!end)   { showToastMsg('⚠️ Select end date'); return; }
+      if(start > end){ showToastMsg('⚠️ End date must be after start'); return; }
+      HB.push({ id:uid(), name, start, end, checks:{} });
+      saveHabits();
+      document.getElementById('habitName').value='';
+      document.getElementById('habitStart').value='';
+      document.getElementById('habitEnd').value='';
+      renderHabit();
+      showToastMsg('✅ Habit added!');
+    }
+
+    function delHabit(id){
+      HB = HB.filter(h=>h.id!==id);
+      saveHabits();
+      renderHabit();
+    }
+
+    function toggleHabitCheck(hid, dateStr){
+      const h = HB.find(x=>x.id===hid);
+      if(!h) return;
+      h.checks[dateStr] = !h.checks[dateStr];
+      if(!h.checks[dateStr]) delete h.checks[dateStr];
+      saveHabits();
+      // Surgical update — just toggle the button class
+      const btn = document.getElementById('hc-'+hid+'-'+dateStr);
+      if(btn){
+        btn.classList.toggle('checked', !!h.checks[dateStr]);
+        btn.textContent = h.checks[dateStr] ? '✓' : '';
+      }
+      // Update streak and pct for this row
+      updateHabitRowStats(h);
+    }
+
+    function updateHabitRowStats(h){
+      const {streak, pct} = calcHabitStats(h);
+      const sk = document.getElementById('hstreak-'+h.id);
+      const sp = document.getElementById('hpct-'+h.id);
+      if(sk) sk.textContent = '🔥 '+streak+' day streak';
+      if(sp) sp.textContent = pct+'% done';
+    }
+
+    // Parse YYYY-MM-DD safely without timezone shift
+    function parseLocalDate(str){
+      const [y,m,d] = str.split('-').map(Number);
+      return new Date(y, m-1, d);
+    }
+
+    function dateToKey(d){
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    function calcHabitStats(h){
+      const start = parseLocalDate(h.start);
+      const end   = parseLocalDate(h.end);
+      const today = new Date(); today.setHours(0,0,0,0);
+      const effectiveEnd = end < today ? end : today;
+
+      // Total = full habit duration (start to end date)
+      let totalDays = 0;
+      const td = new Date(start);
+      while(td <= end){ totalDays++; td.setDate(td.getDate()+1); }
+
+      // Done = how many days checked out of all assigned days
+      let done = Object.keys(h.checks).filter(k => h.checks[k] && k >= h.start && k <= h.end).length;
+
+      // Percentage = checked / total assigned days
+      const pct = totalDays > 0 ? Math.round(done / totalDays * 100) : 0;
+
+      // Current streak — consecutive checked days going backwards from today (within range)
+      let streak = 0;
+      const s = new Date(effectiveEnd);
+      while(s >= start){
+        const k = dateToKey(s);
+        if(h.checks[k]) streak++;
+        else break;
+        s.setDate(s.getDate()-1);
+      }
+
+      return {streak, pct, done, total: totalDays};
+    }
+
+    function getDaysArray(startStr, endStr){
+      const days=[];
+      const d = parseLocalDate(startStr);
+      const end = parseLocalDate(endStr);
+      while(d<=end){
+        days.push(dateToKey(d));
+        d.setDate(d.getDate()+1);
+      }
+      return days;
+    }
+
+    function renderHabit(){
+      const hv = document.getElementById('hview');
+      if(!hv) return;
+
+      const todayObj = new Date(); todayObj.setHours(0,0,0,0);
+      const today = dateToKey(todayObj);
+
+      // Overall stats
+      const totalHabits = HB.length;
+      const activeHabits = HB.filter(h=>h.start<=today && h.end>=today).length;
+      const completedToday = HB.filter(h=>{
+        return h.start<=today && h.end>=today && h.checks[today];
+      }).length;
+      const avgPct = HB.length>0 ? Math.round(HB.reduce((a,h)=>a+calcHabitStats(h).pct,0)/HB.length) : 0;
+
+      // Build the grid columns = all unique dates across all habits
+      // For display: show a sliding window (last 30 days or habit range, whichever is smaller)
+      const allDays = new Set();
+      HB.forEach(h=>{
+        const days = getDaysArray(h.start, h.end);
+        days.forEach(d=>allDays.add(d));
+      });
+      // Sort and limit to a reasonable window around today
+      let days = [...allDays].sort();
+      if(days.length===0){
+        // No habits yet
+        days = [];
+      }
+
+      let gridHTML = '';
+
+      // Header row — flex row, fixed cell widths match data rows
+      gridHTML += `<div class="habit-grid-header">`;
+      gridHTML += `<div class="hg-name" style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:700">Habit</div>`;
+      days.forEach(d=>{
+        const isToday = d===today;
+        const dObj = parseLocalDate(d);
+        const label = `${['Su','Mo','Tu','We','Th','Fr','Sa'][dObj.getDay()]}<br>${dObj.getDate()}`;
+        gridHTML+=`<div class="hg-date${isToday?' today-col':''}" style="width:36px;min-width:36px">${label}</div>`;
+      });
+      gridHTML+=`<div class="hg-date" style="width:90px;min-width:90px;text-align:center">Stats</div>`;
+      gridHTML+=`</div>`;
+
+      // Habit rows
+      if(HB.length===0){
+        gridHTML += '';
+      } else {
+        HB.forEach(h=>{
+          const {streak, pct} = calcHabitStats(h);
+          gridHTML+=`<div class="habit-grid-row">`;
+          gridHTML+=`<div class="hg-name" title="${esc(h.name)}">${esc(h.name)}<div style="font-size:0.55rem;color:var(--muted);margin-top:2px">${h.start} → ${h.end}</div></div>`;
+          days.forEach(d=>{
+            const inRange = d>=h.start && d<=h.end;
+            const checked = !!h.checks[d];
+            gridHTML+=`<div class="hg-cell" style="width:36px;min-width:36px">
+              <button class="hg-check${checked?' checked':''}${!inRange?' out-range':''}"
+                id="hc-${h.id}-${d}"
+                onclick="${inRange?`toggleHabitCheck('${h.id}','${d}')`:''}"
+              >${checked?'✓':''}</button>
+            </div>`;
+          });
+          gridHTML+=`<div class="hg-actions" style="width:90px;min-width:90px">
+            <div>
+              <div class="hg-streak" id="hstreak-${h.id}">🔥 ${streak}d</div>
+              <div class="hg-pct" id="hpct-${h.id}">${pct}%</div>
+            </div>
+            <button class="hg-del" onclick="delHabit('${h.id}')">✕</button>
+          </div>`;
+          gridHTML+=`</div>`;
+        });
+      }
+
+      hv.innerHTML=`
+      <!-- STATS -->
+      <div class="habit-stats-row">
+        <div class="habit-stat"><div class="habit-stat-n" style="color:var(--accent)">${totalHabits}</div><div class="habit-stat-l">Total Habits</div></div>
+        <div class="habit-stat"><div class="habit-stat-n" style="color:var(--accent3)">${activeHabits}</div><div class="habit-stat-l">Active Today</div></div>
+        <div class="habit-stat"><div class="habit-stat-n" style="color:var(--accent4)">${completedToday}</div><div class="habit-stat-l">Done Today</div></div>
+        <div class="habit-stat"><div class="habit-stat-n" style="color:var(--accent2)">${avgPct}%</div><div class="habit-stat-l">Avg Completion</div></div>
+      </div>
+
+      <!-- ADD FORM -->
+      <div class="habit-form">
+        <div class="habit-form-title">➕ Add New Habit</div>
+        <div class="habit-form-grid">
+          <div class="habit-field">
+            <label>Habit Name</label>
+            <input class="habit-input" id="habitName" placeholder="e.g. Morning Run, Read 30 mins..." onkeydown="if(event.key==='Enter')addHabit()">
+          </div>
+          <div class="habit-field">
+            <label>Start Date</label>
+            <input class="habit-input" id="habitStart" type="date">
+          </div>
+          <div class="habit-field">
+            <label>End Date</label>
+            <input class="habit-input" id="habitEnd" type="date">
+          </div>
+          <button class="habit-add-btn" onclick="addHabit()">+ Add</button>
+        </div>
+      </div>
+
+      <!-- GRID -->
+      ${HB.length===0
+        ? `<div class="habit-empty">No habits yet!<br><br>Add your first habit above — track daily reading, exercise, coding practice, anything you want to build consistently 🔥</div>`
+        : `<div class="habit-grid-wrap"><div class="habit-grid">${gridHTML}</div></div>`
+      }`;
+    }
+
     // ── REGISTER SERVICE WORKER (PWA) ──
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener('controllerchange', () => {
@@ -4776,5 +5146,4 @@
     }
   </script>
 </body>
-
 </html>
