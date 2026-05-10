@@ -4270,7 +4270,7 @@
 
     function saveExams() {
       localStorage.setItem(EXAM_KEY, JSON.stringify(EX));
-      updateExamBadge();
+      if (window._saveExamsToCloud) window._saveExamsToCloud(EX); // ADD this
     }
 
     function updateExamBadge() {
