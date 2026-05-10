@@ -1047,7 +1047,494 @@
       border-radius: 10px;
     }
 
-    /* ── RESPONSIVE ── */
+    /* Move to date modal */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .75);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-bg.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 18px;
+      padding: 24px;
+      width: 90%;
+      max-width: 360px;
+    }
+
+    .modal-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    /* Move button on task item */
+    .tmove {
+      background: none;
+      border: none;
+      color: var(--muted2);
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 3px 4px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+
+    .ti:hover .tmove {
+      opacity: 1;
+    }
+
+    .tmove:hover {
+      color: var(--accent);
+    }
+
+    @media(hover:none) {
+      .tmove {
+        opacity: 0.6;
+      }
+
+      .tdel {
+        opacity: 0.6;
+      }
+    }
+
+    /* Day picker grid */
+    .move-day-btn {
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 2px;
+      font-size: 0.72rem;
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      transition: all .15s;
+    }
+
+    .move-day-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .move-day-btn.today-day {
+      border-color: rgba(232, 255, 71, .4);
+      color: var(--accent);
+    }
+
+    .move-day-btn.selected {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── EXAM VIEW ── */
+    .eview {
+      display: none;
+      padding: 20px;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    .eview.on {
+      display: block;
+    }
+
+    /* Add Exam Form */
+    .exam-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .exam-form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .exam-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .exam-field label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .exam-field input,
+    .exam-field select {
+      width: 100%;
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 0.82rem;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .exam-field input:focus,
+    .exam-field select:focus {
+      border-color: var(--accent);
+    }
+
+    .exam-field input::placeholder {
+      color: var(--muted2);
+    }
+
+    .exam-tbd-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .exam-tbd-row input[type=checkbox] {
+      accent-color: var(--accent);
+      width: 14px;
+      height: 14px;
+    }
+
+    .exam-add-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 24px;
+      color: #000;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .1s, opacity .15s;
+      width: 100%;
+    }
+
+    .exam-add-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.01);
+    }
+
+    /* Exam type colors */
+    .etype-midterm {
+      background: rgba(232, 255, 71, .12);
+      color: #e8ff47;
+      border-color: rgba(232, 255, 71, .25);
+    }
+
+    .etype-endterm {
+      background: rgba(255, 107, 107, .12);
+      color: #ff6b6b;
+      border-color: rgba(255, 107, 107, .25);
+    }
+
+    .etype-lab {
+      background: rgba(107, 179, 255, .12);
+      color: #6bb3ff;
+      border-color: rgba(107, 179, 255, .25);
+    }
+
+    .etype-viva {
+      background: rgba(107, 255, 212, .12);
+      color: #6bffd4;
+      border-color: rgba(107, 255, 212, .25);
+    }
+
+    .etype-assignment {
+      background: rgba(255, 170, 107, .12);
+      color: #ffaa6b;
+      border-color: rgba(255, 170, 107, .25);
+    }
+
+    /* Exam Table */
+    .exam-section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin: 20px 0 10px;
+    }
+
+    .exam-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+
+    .exam-table th {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exam-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .exam-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .exam-table tr:hover td {
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .exam-name-cell {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .exam-type-pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      border: 1px solid;
+    }
+
+    .exam-countdown {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .exam-countdown.urgent {
+      color: var(--accent2);
+      animation: pulse-urgent 1.2s infinite alternate;
+    }
+
+    .exam-countdown.soon {
+      color: var(--accent4);
+    }
+
+    .exam-countdown.ok {
+      color: var(--accent3);
+    }
+
+    .exam-countdown.past {
+      color: var(--muted);
+    }
+
+    @keyframes pulse-urgent {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.5;
+      }
+    }
+
+    .exam-del-btn {
+      background: none;
+      border: none;
+      color: var(--muted2);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: all .15s;
+    }
+
+    .exam-del-btn:hover {
+      color: var(--accent2);
+    }
+
+    .exam-empty {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* Horizontal scrollable calendar */
+    .exam-cal-section {
+      margin-top: 8px;
+    }
+
+    .exam-cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .exam-cal-month {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .exam-cal-nav {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .15s;
+    }
+
+    .exam-cal-nav:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .exam-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .exam-cal-dow {
+      text-align: center;
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+
+    .exam-cal-day {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 0.75rem;
+      cursor: default;
+      transition: background .15s;
+      background: var(--surface);
+      border: 1px solid transparent;
+    }
+
+    .exam-cal-day.empty {
+      background: transparent;
+      border: none;
+    }
+
+    .exam-cal-day.today {
+      border-color: rgba(232, 255, 71, .4);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .exam-cal-day.has-exam {
+      background: var(--surface2);
+      border-color: var(--border2);
+      cursor: pointer;
+    }
+
+    .exam-cal-day.has-exam:hover {
+      border-color: var(--accent3);
+    }
+
+    .exam-cal-day.past-day {
+      opacity: 0.4;
+    }
+
+    .exam-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .exam-cal-day .exam-tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.65rem;
+      color: var(--text);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s;
+      z-index: 20;
+      text-align: left;
+      min-width: 120px;
+    }
+
+    .exam-cal-day:hover .exam-tooltip {
+      opacity: 1;
+    }
+
+    @media(max-width:768px) {
+      .exam-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exam-table th:nth-child(3),
+      .exam-table td:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media(max-width:480px) {
+
+      .exam-table th:nth-child(4),
+      .exam-table td:nth-child(4) {
+        display: none;
+      }
+    }
+
     /* Tablet */
     @media(max-width:1024px) {
       .days-grid {
@@ -1840,6 +2327,435 @@
         min-height: 100px;
       }
     }
+
+    /* ── EXAM TAB ── */
+    .eview {
+      display: none;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .eview.on {
+      display: block;
+    }
+
+    .exam-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .exam-form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .exam-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .exam-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .exam-field label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .exam-input {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color .15s;
+      width: 100%;
+    }
+
+    .exam-input:focus {
+      border-color: var(--accent);
+    }
+
+    .exam-input::placeholder {
+      color: var(--muted2);
+    }
+
+    .exam-type-select {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 9px 10px;
+      color: var(--text);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 0.82rem;
+      outline: none;
+      width: 100%;
+    }
+
+    .exam-time-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exam-tbd {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .exam-tbd input[type=checkbox] {
+      accent-color: var(--accent);
+      width: 14px;
+      height: 14px;
+    }
+
+    .exam-add-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 24px;
+      color: #000;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .1s;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .exam-add-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .exam-section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exam-section-title span {
+      background: var(--surface2);
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 0.62rem;
+      color: var(--text);
+    }
+
+    .exam-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+
+    .exam-table th {
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    .exam-row {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    .exam-row:hover {
+      background: var(--surface2);
+    }
+
+    .exam-row td {
+      padding: 11px 12px;
+      font-size: 0.82rem;
+      vertical-align: middle;
+    }
+
+    .exam-name-cell {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .exam-countdown {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .exam-countdown.urgent {
+      background: rgba(255, 107, 107, .15);
+      color: var(--accent2);
+    }
+
+    .exam-countdown.soon {
+      background: rgba(255, 170, 107, .15);
+      color: var(--accent4);
+    }
+
+    .exam-countdown.normal {
+      background: rgba(107, 255, 212, .1);
+      color: var(--accent3);
+    }
+
+    .exam-countdown.today-exam {
+      background: rgba(255, 107, 107, .25);
+      color: var(--accent2);
+      animation: pulse-exam 1s infinite alternate;
+    }
+
+    .exam-countdown.past {
+      background: rgba(255, 255, 255, .05);
+      color: var(--muted);
+    }
+
+    @keyframes pulse-exam {
+      from {
+        opacity: 0.7;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .exam-type-pill {
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .exam-del-btn {
+      background: none;
+      border: none;
+      color: var(--muted2);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all .15s;
+    }
+
+    .exam-del-btn:hover {
+      color: var(--accent2);
+      background: rgba(255, 107, 107, .1);
+    }
+
+    .exam-empty {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* Calendar */
+    .exam-cal-wrap {
+      margin-top: 4px;
+    }
+
+    .exam-cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .exam-cal-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .exam-cal-nav {
+      display: flex;
+      gap: 6px;
+    }
+
+    .exam-cal-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .15s;
+    }
+
+    .exam-cal-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .exam-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+
+    .exam-cal-dow {
+      text-align: center;
+      font-size: 0.58rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 0;
+    }
+
+    .exam-cal-day {
+      min-height: 52px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 2px;
+      position: relative;
+      font-size: 0.78rem;
+      color: var(--text);
+      cursor: default;
+      transition: background .15s;
+      border: 1px solid transparent;
+      gap: 3px;
+    }
+
+    .exam-cal-day.today-cal {
+      background: rgba(232, 255, 71, .08);
+      border-color: rgba(232, 255, 71, .3);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .exam-cal-day.has-exam {
+      background: var(--surface2);
+      border-color: var(--border2);
+      cursor: pointer;
+    }
+
+    .exam-cal-day.has-exam:hover {
+      border-color: var(--accent3);
+      background: var(--surface3);
+    }
+
+    .exam-cal-day.past-cal {
+      color: var(--muted2);
+    }
+
+    .exam-cal-day.empty {
+      background: none;
+      border: none;
+    }
+
+    .exam-dot-wrap {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .exam-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .exam-cal-tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.65rem;
+      color: var(--text);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s;
+      z-index: 20;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .exam-cal-day.has-exam:hover .exam-cal-tooltip {
+      opacity: 1;
+    }
+
+    @media(max-width:768px) {
+      .exam-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .eview {
+        padding: 14px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .exam-cal-day {
+        min-height: 40px;
+        font-size: 0.7rem;
+      }
+
+      .exam-table th,
+      .exam-row td {
+        padding: 8px 6px;
+        font-size: 0.72rem;
+      }
+    }
   </style>
 </head>
 
@@ -1861,6 +2777,9 @@
       <button class="tab-btn" id="tabP" onclick="switchTab('pomodoro')">
         <span class="tab-icon">🍅</span><span class="tab-text"> Focus</span>
       </button>
+      <button class="tab-btn" id="tabE" onclick="switchTab('exam')">
+        <span class="tab-icon">📝</span><span class="tab-text"> Exams</span>
+      </button>
       <!-- Auth area -->
       <div id="authArea">
         <button class="auth-btn" onclick="showAuthModal()">
@@ -1868,6 +2787,47 @@
           <span class="auth-label">Sign in</span>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MOVE TO DATE MODAL -->
+  <div class="modal-bg" id="moveDateBg" onclick="closeMoveDateModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width:340px">
+      <div class="modal-title">📅 Move Task to Date</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-bottom:16px" id="moveTaskPreview"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+        <div>
+          <label style="font-size:0.7rem;color:var(--muted);display:block;margin-bottom:6px">Month</label>
+          <select class="ts" id="moveDateMonth" style="width:100%;padding:8px 10px;font-size:0.8rem">
+            <option value="0">Jan</option>
+            <option value="1">Feb</option>
+            <option value="2">Mar</option>
+            <option value="3">Apr</option>
+            <option value="4">May</option>
+            <option value="5">Jun</option>
+            <option value="6">Jul</option>
+            <option value="7">Aug</option>
+            <option value="8">Sep</option>
+            <option value="9">Oct</option>
+            <option value="10">Nov</option>
+            <option value="11">Dec</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:0.7rem;color:var(--muted);display:block;margin-bottom:6px">Year</label>
+          <select class="ts" id="moveDateYear" style="width:100%;padding:8px 10px;font-size:0.8rem">
+            <option value="2025">2025</option>
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label style="font-size:0.7rem;color:var(--muted);display:block;margin-bottom:8px">Pick a Day</label>
+        <div id="moveDateDays" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px"></div>
+      </div>
+      <button class="auth-btn" onclick="closeMoveDateModal()"
+        style="margin-top:16px;width:100%;justify-content:center;background:var(--surface3)">Cancel</button>
     </div>
   </div>
 
@@ -1906,6 +2866,7 @@
         </div>
         <div class="rview" id="rview"></div>
         <div class="pview" id="pview"></div>
+        <div class="eview" id="eview"></div>
       </div>
     </div>
   </div>
@@ -2174,6 +3135,7 @@
       <div class="tt${t.done ? ' done' : ''}">${esc(t.text)}</div>
       <span class="tpill" style="background:${tc.bg};color:${tc.c}">${t.tag}</span>
     </div>
+    <button class="tmove" onclick="openMoveDateModal('${t.key}')" title="Move to another date">📅</button>
     <button class="tdel" onclick="del('${t.key}')">✕</button>
   </div>`;
     }
@@ -2330,12 +3292,17 @@
       document.getElementById('tabW').classList.toggle('active', t === 'week');
       document.getElementById('tabR').classList.toggle('active', t === 'remaining');
       document.getElementById('tabP').classList.toggle('active', t === 'pomodoro');
+      document.getElementById('tabE').classList.toggle('active', t === 'exam');
       document.getElementById('wview').classList.toggle('on', t === 'week');
       document.getElementById('rview').classList.toggle('on', t === 'remaining');
       document.getElementById('pview').classList.toggle('on', t === 'pomodoro');
-      // Hide sidebar when opening pomodoro on mobile
+      document.getElementById('eview').classList.toggle('on', t === 'exam');
       if (t === 'pomodoro') {
         renderPomodoro();
+        if (window.innerWidth <= 768) closeSidebarMobile();
+      }
+      if (t === 'exam') {
+        renderExam();
         if (window.innerWidth <= 768) closeSidebarMobile();
       }
     }
@@ -2481,7 +3448,105 @@
       }
       t.textContent = msg;
       t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // ── MOVE TO DATE MODAL ──
+    let _moveTaskKey = null;
+    let _moveSelectedDay = null;
+
+    function openMoveDateModal(key) {
+      _moveTaskKey = key;
+      _moveSelectedDay = null;
+      const sourceDk = key.split('::')[0];
+      const taskText = S.tasks[key]?.text || '';
+
+      // Set preview text
+      document.getElementById('moveTaskPreview').textContent = `"${taskText}" — currently on ${sourceDk}`;
+
+      // Set month/year selectors to current state
+      const monthSel = document.getElementById('moveDateMonth');
+      const yearSel = document.getElementById('moveDateYear');
+      monthSel.value = S.month;
+      yearSel.value = S.year;
+
+      // Build day grid
+      buildMoveDayGrid();
+
+      // Listen for month/year change
+      monthSel.onchange = buildMoveDayGrid;
+      yearSel.onchange = buildMoveDayGrid;
+
+      document.getElementById('moveDateBg').classList.add('show');
+    }
+
+    function buildMoveDayGrid() {
+      const month = parseInt(document.getElementById('moveDateMonth').value);
+      const year = parseInt(document.getElementById('moveDateYear').value);
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const today = new Date();
+      const todayKey = dKey(today.getFullYear(), today.getMonth(), today.getDate());
+
+      let html = '';
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dk = dKey(year, month, d);
+        const isToday = dk === todayKey;
+        const isSelected = dk === _moveSelectedDay;
+        const dow = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][new Date(year, month, d).getDay()];
+        html += `<div class="move-day-btn${isToday ? ' today-day' : ''}${isSelected ? ' selected' : ''}"
+      onclick="selectMoveDay('${dk}', this)">
+      <div style="font-size:0.5rem;color:inherit;opacity:0.7">${dow}</div>
+      <div>${d}</div>
+    </div>`;
+      }
+      document.getElementById('moveDateDays').innerHTML = html;
+    }
+
+    function selectMoveDay(dk, el) {
+      _moveSelectedDay = dk;
+      // Highlight selected
+      document.querySelectorAll('.move-day-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      // Auto confirm after short delay
+      setTimeout(() => confirmMoveTask(), 200);
+    }
+
+    function confirmMoveTask() {
+      if (!_moveTaskKey || !_moveSelectedDay) return;
+      if (!S.tasks[_moveTaskKey]) return;
+
+      const sourceDk = _moveTaskKey.split('::')[0];
+      if (sourceDk === _moveSelectedDay) {
+        closeMoveDateModal();
+        return;
+      }
+
+      // Move task
+      const taskData = { ...S.tasks[_moveTaskKey] };
+      const newKey = _moveSelectedDay + '::' + uid();
+      S.tasks[newKey] = taskData;
+      delete S.tasks[_moveTaskKey];
+      save();
+
+      // Refresh UI
+      refreshDayCard(sourceDk);
+      refreshDayCard(_moveSelectedDay);
+      updateStats();
+      updateSidebarProgress();
+      updateRemainingBadge();
+
+      closeMoveDateModal();
+
+      // Format date nicely for toast
+      const [y, m, d] = _moveSelectedDay.split('-');
+      const dateStr = `${MONTHS[parseInt(m) - 1]} ${parseInt(d)}, ${y}`;
+      showToastMsg(`✅ Task moved to ${dateStr}!`);
+    }
+
+    function closeMoveDateModal() {
+      document.getElementById('moveDateBg').classList.remove('show');
+      _moveTaskKey = null;
+      _moveSelectedDay = null;
     }
 
     // ── UPDATE SIDEBAR WEEK PROGRESS BARS ONLY ──
@@ -3172,6 +4237,254 @@
       const wi = weeks.findIndex(w => w.days.includes(nd));
       if (wi !== -1) { S.week = wi; refresh(); }
     }
+
+    // ══════════════════════════════════════════
+    // ── EXAM ENGINE ──
+    // ══════════════════════════════════════════
+
+    const EXAM_KEY = 'tf_exams';
+    const EXAM_TYPES = {
+      'Mid-term': { bg: 'rgba(232,255,71,.15)', c: '#e8ff47' },
+      'End-term': { bg: 'rgba(255,107,107,.15)', c: '#ff6b6b' },
+      'Lab': { bg: 'rgba(107,179,255,.15)', c: '#6bb3ff' },
+      'Viva': { bg: 'rgba(107,255,212,.15)', c: '#6bffd4' },
+      'Assignment': { bg: 'rgba(255,170,107,.15)', c: '#ffaa6b' },
+    };
+
+    let EX = JSON.parse(localStorage.getItem(EXAM_KEY) || '[]');
+    let examCalMonth = new Date().getMonth();
+    let examCalYear = new Date().getFullYear();
+
+    function saveExams() {
+      localStorage.setItem(EXAM_KEY, JSON.stringify(EX));
+      updateExamBadge();
+    }
+
+    function updateExamBadge() {
+      const tabE = document.getElementById('tabE');
+      if (!tabE) return;
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const upcoming = EX.filter(e => {
+        const d = new Date(e.date); d.setHours(0, 0, 0, 0);
+        return d >= today;
+      }).length;
+      const txt = tabE.querySelector('.tab-text');
+      if (txt) txt.textContent = upcoming > 0 ? ` Exams (${upcoming})` : ' Exams';
+      if (upcoming > 0) tabE.classList.add('has'); else tabE.classList.remove('has');
+    }
+
+    function examCountdown(dateStr) {
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const exam = new Date(dateStr); exam.setHours(0, 0, 0, 0);
+      const diff = Math.round((exam - today) / 86400000);
+      if (diff < 0) return { label: Math.abs(diff) + 'd ago', cls: 'past' };
+      if (diff === 0) return { label: 'Today! 🔴', cls: 'today-exam' };
+      if (diff === 1) return { label: 'Tomorrow!', cls: 'urgent' };
+      if (diff <= 3) return { label: 'in ' + diff + ' days', cls: 'urgent' };
+      if (diff <= 7) return { label: 'in ' + diff + ' days', cls: 'soon' };
+      return { label: 'in ' + diff + ' days', cls: 'normal' };
+    }
+
+    function addExam() {
+      const name = document.getElementById('examName').value.trim();
+      const date = document.getElementById('examDate').value;
+      const type = document.getElementById('examType').value;
+      const tbd = document.getElementById('examTimeTbd').checked;
+      const time = tbd ? null : document.getElementById('examTime').value;
+
+      if (!name) { showToastMsg('⚠️ Please enter exam name'); return; }
+      if (!date) { showToastMsg('⚠️ Please select exam date'); return; }
+
+      EX.push({ id: uid(), name, date, type, time });
+      EX.sort((a, b) => new Date(a.date) - new Date(b.date));
+      saveExams();
+      document.getElementById('examName').value = '';
+      document.getElementById('examDate').value = '';
+      document.getElementById('examTime').value = '';
+      document.getElementById('examTimeTbd').checked = false;
+      document.getElementById('examTime').disabled = false;
+      renderExam();
+      showToastMsg('✅ Exam added!');
+    }
+
+    function delExam(id) {
+      EX = EX.filter(e => e.id !== id);
+      saveExams();
+      renderExam();
+    }
+
+    function toggleTimeTbd() {
+      const tbd = document.getElementById('examTimeTbd').checked;
+      document.getElementById('examTime').disabled = tbd;
+      if (tbd) document.getElementById('examTime').value = '';
+    }
+
+    function renderExamCalendar() {
+      const container = document.getElementById('examCalContainer');
+      if (!container) return;
+
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const firstDay = new Date(examCalYear, examCalMonth, 1).getDay();
+      const daysInMonth = new Date(examCalYear, examCalMonth + 1, 0).getDate();
+
+      // Build exam map for this month
+      const examMap = {};
+      EX.forEach(e => {
+        const d = new Date(e.date);
+        if (d.getFullYear() === examCalYear && d.getMonth() === examCalMonth) {
+          const day = d.getDate();
+          if (!examMap[day]) examMap[day] = [];
+          examMap[day].push(e);
+        }
+      });
+
+      const DOWS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      let html = `<div class="exam-cal-grid">`;
+
+      // Day headers
+      DOWS.forEach(d => { html += `<div class="exam-cal-dow">${d}</div>`; });
+
+      // Empty cells before first day
+      for (let i = 0; i < firstDay; i++) html += `<div class="exam-cal-day empty"></div>`;
+
+      // Day cells
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cellDate = new Date(examCalYear, examCalMonth, d); cellDate.setHours(0, 0, 0, 0);
+        const isToday = cellDate.getTime() === today.getTime();
+        const isPast = cellDate < today;
+        const exams = examMap[d] || [];
+        const hasExam = exams.length > 0;
+
+        let cls = 'exam-cal-day';
+        if (isToday) cls += ' today-cal';
+        if (isPast && !isToday) cls += ' past-cal';
+        if (hasExam) cls += ' has-exam';
+
+        let dots = '';
+        let tooltipLines = '';
+        exams.forEach(e => {
+          const tc = EXAM_TYPES[e.type] || EXAM_TYPES['Mid-term'];
+          dots += `<div class="exam-dot" style="background:${tc.c}"></div>`;
+          tooltipLines += `<div>${e.name} ${e.time ? '@ ' + e.time : ''}</div>`;
+        });
+
+        html += `<div class="${cls}">
+      <div style="font-size:0.75rem;font-weight:${isToday ? '800' : '400'}">${d}</div>
+      ${hasExam ? `<div class="exam-dot-wrap">${dots}</div>
+      <div class="exam-cal-tooltip">${tooltipLines}</div>` : ''}
+    </div>`;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function examCalNav(dir) {
+      examCalMonth += dir;
+      if (examCalMonth > 11) { examCalMonth = 0; examCalYear++; }
+      if (examCalMonth < 0) { examCalMonth = 11; examCalYear--; }
+      document.getElementById('examCalTitle').textContent = `${MONTHS[examCalMonth]} ${examCalYear}`;
+      renderExamCalendar();
+    }
+
+    function renderExam() {
+      const ev = document.getElementById('eview');
+      if (!ev) return;
+
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const upcoming = EX.filter(e => { const d = new Date(e.date); d.setHours(0, 0, 0, 0); return d >= today; });
+      const past = EX.filter(e => { const d = new Date(e.date); d.setHours(0, 0, 0, 0); return d < today; });
+
+      function tableRows(list) {
+        if (!list.length) return '';
+        return list.map(e => {
+          const tc = EXAM_TYPES[e.type] || EXAM_TYPES['Mid-term'];
+          const cd = examCountdown(e.date);
+          const d = new Date(e.date);
+          const dateStr = `${DAYS_SHORT[d.getDay()]}, ${MONTHS[d.getMonth()].slice(0, 3)} ${d.getDate()}, ${d.getFullYear()}`;
+          const timeStr = e.time ? e.time : '<span style="color:var(--muted);font-size:0.72rem">TBD</span>';
+          return `<tr class="exam-row">
+        <td class="exam-name-cell">${esc(e.name)}</td>
+        <td><span class="exam-type-pill" style="background:${tc.bg};color:${tc.c}">${e.type}</span></td>
+        <td style="white-space:nowrap">${dateStr}</td>
+        <td>${timeStr}</td>
+        <td><span class="exam-countdown ${cd.cls}">${cd.label}</span></td>
+        <td><button class="exam-del-btn" onclick="delExam('${e.id}')">✕</button></td>
+      </tr>`;
+        }).join('');
+      }
+
+      ev.innerHTML = `
+  <!-- ADD FORM -->
+  <div class="exam-form">
+    <div class="exam-form-title">➕ Add Exam</div>
+    <div class="exam-form-grid">
+      <div class="exam-field" style="grid-column:1/-1">
+        <label>Exam Name</label>
+        <input class="exam-input" id="examName" placeholder="e.g. Data Structures Mid-term" onkeydown="if(event.key==='Enter')addExam()">
+      </div>
+      <div class="exam-field">
+        <label>Exam Type</label>
+        <select class="exam-type-select" id="examType">
+          ${Object.keys(EXAM_TYPES).map(t => `<option value="${t}">${t}</option>`).join('')}
+        </select>
+      </div>
+      <div class="exam-field">
+        <label>Date</label>
+        <input class="exam-input" id="examDate" type="date">
+      </div>
+      <div class="exam-field" style="grid-column:1/-1">
+        <label>Time</label>
+        <div class="exam-time-row">
+          <input class="exam-input" id="examTime" type="time" style="flex:1">
+          <label class="exam-tbd">
+            <input type="checkbox" id="examTimeTbd" onchange="toggleTimeTbd()">
+            Time TBD
+          </label>
+        </div>
+      </div>
+    </div>
+    <button class="exam-add-btn" onclick="addExam()">Add Exam</button>
+  </div>
+
+  <!-- UPCOMING TABLE -->
+  <div class="exam-section-title">📅 Upcoming Exams <span>${upcoming.length}</span></div>
+  ${upcoming.length ? `
+  <table class="exam-table">
+    <thead><tr>
+      <th>Exam</th><th>Type</th><th>Date</th><th>Time</th><th>Countdown</th><th></th>
+    </tr></thead>
+    <tbody>${tableRows(upcoming)}</tbody>
+  </table>` : `<div class="exam-empty">No upcoming exams. Add one above! 🎓</div>`}
+
+  <!-- PAST TABLE -->
+  ${past.length ? `
+  <div class="exam-section-title" style="margin-top:8px">✅ Completed Exams <span>${past.length}</span></div>
+  <table class="exam-table" style="opacity:0.6">
+    <thead><tr>
+      <th>Exam</th><th>Type</th><th>Date</th><th>Time</th><th>Status</th><th></th>
+    </tr></thead>
+    <tbody>${tableRows(past)}</tbody>
+  </table>` : ''}
+
+  <!-- CALENDAR -->
+  <div class="exam-cal-wrap">
+    <div class="exam-cal-header">
+      <div class="exam-cal-title" id="examCalTitle">${MONTHS[examCalMonth]} ${examCalYear}</div>
+      <div class="exam-cal-nav">
+        <button class="exam-cal-btn" onclick="examCalNav(-1)">‹</button>
+        <button class="exam-cal-btn" onclick="examCalNav(1)">›</button>
+      </div>
+    </div>
+    <div id="examCalContainer"></div>
+  </div>`;
+
+      renderExamCalendar();
+      updateExamBadge();
+    }
+
+    // Init exam badge on load
+    updateExamBadge();
   </script>
 </body>
 
