@@ -2899,7 +2899,7 @@
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut as fbSignOut }
       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-    import { getFirestore, doc, getDoc, setDoc, onSnapshot }
+    import { getFirestore, doc, setDoc, onSnapshot }
       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
     // ── FIREBASE CONFIG ──
@@ -2914,7 +2914,8 @@
       appId: "1:117915873119:web:4a3f6d44b87aba307110ea"
     };
 
-    let app, auth, db, currentUser = null, unsubSnap = null, _isSavingToCloud = false;
+    let app, auth, db, currentUser = null, unsubSnap = null, unsubExamSnap = null,
+      _isSavingToCloud = false, _isSavingExamsToCloud = false;
 
     try {
       app = initializeApp(firebaseConfig);
@@ -2934,23 +2935,47 @@
           document.getElementById('syncBadge').textContent = '☁ Synced';
           document.getElementById('syncBadge').classList.remove('local');
 
-          // Subscribe to Firestore realtime updates
+          // Subscribe to Firestore realtime updates: TASKS
           if (unsubSnap) unsubSnap();
           const ref = doc(db, 'users', user.uid, 'data', 'tasks');
           unsubSnap = onSnapshot(ref, snap => {
-            if (_isSavingToCloud) return; // ignore echoes from our own saves
+            if (_isSavingToCloud) return;
             if (snap.exists()) {
-              const cloudTasks = snap.data().tasks || {};
+              const cloudData = snap.data();
+              const cloudTasks = cloudData.tasks || {};
+              const cloudTs = cloudData.updatedAt ? new Date(cloudData.updatedAt).getTime() : 0;
               const localTasks = JSON.parse(localStorage.getItem('tf_tasks') || '{}');
-              const merged = { ...localTasks, ...cloudTasks }; // cloud wins on conflict
+              const localTs = parseInt(localStorage.getItem('tf_tasks_ts') || '0', 10);
+              // Merge: keep all keys from both sides; winner on conflict = whoever is newer
+              const merged = cloudTs >= localTs
+                ? { ...localTasks, ...cloudTasks }
+                : { ...cloudTasks, ...localTasks };
               localStorage.setItem('tf_tasks', JSON.stringify(merged));
+              localStorage.setItem('tf_tasks_ts', String(cloudTs || Date.now()));
               S.tasks = merged;
               refresh();
+            }
+          });
+
+          // Subscribe to Firestore realtime updates: EXAMS
+          if (unsubExamSnap) unsubExamSnap();
+          const examRef = doc(db, 'users', user.uid, 'data', 'exams');
+          unsubExamSnap = onSnapshot(examRef, snap => {
+            if (_isSavingExamsToCloud) return;
+            if (snap.exists()) {
+              const cloudExams = snap.data().exams || [];
+              localStorage.setItem('tf_exams', JSON.stringify(cloudExams));
+              if (typeof EX !== 'undefined') {
+                EX = cloudExams;
+                if (typeof renderExam === 'function') renderExam();
+                if (typeof updateExamBadge === 'function') updateExamBadge();
+              }
             }
           });
         } else {
           currentUser = null;
           if (unsubSnap) { unsubSnap(); unsubSnap = null; }
+          if (unsubExamSnap) { unsubExamSnap(); unsubExamSnap = null; }
           document.getElementById('authArea').innerHTML = `
         <button class="auth-btn" onclick="showAuthModal()">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G" style="width:14px;height:14px;">
@@ -2978,10 +3003,23 @@
         if (!currentUser || !db) return;
         try {
           _isSavingToCloud = true;
+          const now = new Date().toISOString();
           const ref = doc(db, 'users', currentUser.uid, 'data', 'tasks');
-          await setDoc(ref, { tasks, updatedAt: new Date().toISOString() });
+          await setDoc(ref, { tasks, updatedAt: now });
+          localStorage.setItem('tf_tasks_ts', String(new Date(now).getTime()));
           setTimeout(() => { _isSavingToCloud = false; }, 1500);
         } catch (e) { _isSavingToCloud = false; console.warn('Cloud save failed:', e); }
+      };
+
+      // ── SAVE EXAMS TO CLOUD ──
+      window._saveExamsToCloud = async (exams) => {
+        if (!currentUser || !db) return;
+        try {
+          _isSavingExamsToCloud = true;
+          const ref = doc(db, 'users', currentUser.uid, 'data', 'exams');
+          await setDoc(ref, { exams, updatedAt: new Date().toISOString() });
+          setTimeout(() => { _isSavingExamsToCloud = false; }, 1500);
+        } catch (e) { _isSavingExamsToCloud = false; console.warn('Exam cloud save failed:', e); }
       };
 
     } catch (e) {
@@ -2992,6 +3030,7 @@
       };
       window._fbSignOut = () => { };
       window._saveToCloud = () => { };
+      window._saveExamsToCloud = () => { };
     }
   </script>
 
