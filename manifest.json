@@ -6,8 +6,8 @@
   "scope": "/Task/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0a0a0a",
-  "theme_color": "#e8ff47",
+  "background_color": "#0d0d12",
+  "theme_color": "#7c5cfc",
   "icons": [
     {
       "src": "icon-192.png",

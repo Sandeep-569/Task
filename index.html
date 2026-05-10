@@ -8,7 +8,7 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#e8ff47">
+  <meta name="theme-color" content="#7c5cfc">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="TaskFlow">
@@ -21,19 +21,19 @@
   <style>
     /* ── RESET & ROOT ── */
     :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --surface2: #1e1e1e;
-      --surface3: #252525;
-      --accent: #e8ff47;
-      --accent2: #ff6b6b;
-      --accent3: #6bffd4;
-      --accent4: #ffaa6b;
-      --text: #f0f0f0;
-      --muted: #666;
-      --muted2: #3a3a3a;
-      --border: rgba(255, 255, 255, 0.06);
-      --border2: rgba(255, 255, 255, 0.11);
+      --bg: #0d0d12;
+      --surface: #13131a;
+      --surface2: #1a1a24;
+      --surface3: #21212e;
+      --accent: #7c5cfc;
+      --accent2: #f05b7a;
+      --accent3: #4ecdc4;
+      --accent4: #f0a04b;
+      --text: #f0eeff;
+      --muted: #6b6888;
+      --muted2: #2a2a38;
+      --border: rgba(124, 92, 252, 0.08);
+      --border2: rgba(124, 92, 252, 0.15);
       --sb-w: 252px;
       --toggle-w: 40px;
       --header-h: 58px;
@@ -346,7 +346,7 @@
 
     .yb:hover {
       color: var(--accent);
-      background: rgba(232, 255, 71, .08);
+      background: rgba(124, 92, 252, .08);
     }
 
     .month-grid {
@@ -423,7 +423,7 @@
 
     .wi.active {
       border-color: var(--accent);
-      background: rgba(232, 255, 71, .05);
+      background: rgba(124, 92, 252, .05);
     }
 
     .wi-label {
@@ -545,7 +545,7 @@
     }
 
     .dc.today-card {
-      border-color: rgba(232, 255, 71, .35);
+      border-color: rgba(124, 92, 252, .35);
     }
 
     .dc-head {
@@ -728,8 +728,8 @@
 
     .dc.drag-over {
       border-color: var(--accent) !important;
-      background: rgba(232, 255, 71, 0.04);
-      box-shadow: 0 0 0 2px rgba(232, 255, 71, 0.2);
+      background: rgba(124, 92, 252, 0.04);
+      box-shadow: 0 0 0 2px rgba(124, 92, 252, 0.2);
       transition: all .15s;
     }
 
@@ -1140,7 +1140,7 @@
     }
 
     .move-day-btn.today-day {
-      border-color: rgba(232, 255, 71, .4);
+      border-color: rgba(124, 92, 252, .4);
       color: var(--accent);
     }
 
@@ -1258,14 +1258,14 @@
 
     /* Exam type colors */
     .etype-midterm {
-      background: rgba(232, 255, 71, .12);
-      color: #e8ff47;
-      border-color: rgba(232, 255, 71, .25);
+      background: rgba(124, 92, 252, .12);
+      color: #7c5cfc;
+      border-color: rgba(124, 92, 252, .25);
     }
 
     .etype-endterm {
       background: rgba(255, 107, 107, .12);
-      color: #ff6b6b;
+      color: #f05b7a;
       border-color: rgba(255, 107, 107, .25);
     }
 
@@ -1277,13 +1277,13 @@
 
     .etype-viva {
       background: rgba(107, 255, 212, .12);
-      color: #6bffd4;
+      color: #4ecdc4;
       border-color: rgba(107, 255, 212, .25);
     }
 
     .etype-assignment {
       background: rgba(255, 170, 107, .12);
-      color: #ffaa6b;
+      color: #f0a04b;
       border-color: rgba(255, 170, 107, .25);
     }
 
@@ -1475,7 +1475,7 @@
     }
 
     .exam-cal-day.today {
-      border-color: rgba(232, 255, 71, .4);
+      border-color: rgba(124, 92, 252, .4);
       color: var(--accent);
       font-weight: 700;
     }
@@ -2244,7 +2244,7 @@
 
     .pomo-bar.today-bar {
       opacity: 1;
-      box-shadow: 0 0 10px rgba(232, 255, 71, .3);
+      box-shadow: 0 0 10px rgba(124, 92, 252, .3);
     }
 
     .pomo-bar.break-bar {
@@ -2676,8 +2676,8 @@
     }
 
     .exam-cal-day.today-cal {
-      background: rgba(232, 255, 71, .08);
-      border-color: rgba(232, 255, 71, .3);
+      background: rgba(124, 92, 252, .08);
+      border-color: rgba(124, 92, 252, .3);
       color: var(--accent);
       font-weight: 700;
     }
@@ -2923,7 +2923,7 @@
         if (user) {
           // Signed in
           document.getElementById('authArea').innerHTML = `
-        <img class="user-avatar" id="userAvatar" src="${user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'U') + '&background=e8ff47&color=000'}"
+        <img class="user-avatar" id="userAvatar" src="${user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.displayName || 'U') + '&background=7c5cfc&color=fff'}"
           alt="avatar" onclick="toggleUserMenu()">
       `;
           document.getElementById('umName').textContent = user.displayName || 'User';
@@ -3035,10 +3035,10 @@
     const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const DAYS_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const TAGS = {
-      work: { bg: 'rgba(107,255,212,.15)', c: '#6bffd4' },
-      study: { bg: 'rgba(232,255,71,.15)', c: '#e8ff47' },
+      work: { bg: 'rgba(107,255,212,.15)', c: '#4ecdc4' },
+      study: { bg: 'rgba(124,92,252,.15)', c: '#7c5cfc' },
       health: { bg: 'rgba(107,179,255,.15)', c: '#6bb3ff' },
-      personal: { bg: 'rgba(255,170,107,.15)', c: '#ffaa6b' },
+      personal: { bg: 'rgba(255,170,107,.15)', c: '#f0a04b' },
       other: { bg: 'rgba(200,200,200,.1)', c: '#aaa' },
     };
 
@@ -4058,7 +4058,7 @@
         <div class="pomo-stat"><div class="pomo-stat-n" style="color:var(--accent4)">${activeDays}</div><div class="pomo-stat-l">📅 Active Days</div></div>
         <div class="pomo-stat"><div class="pomo-stat-n" style="color:var(--accent2)">${avgPerActiveDay}<span style="font-size:0.9rem">m</span></div><div class="pomo-stat-l">📊 Avg/Day</div></div>
       </div>
-      ${bestDay && best > 0 ? `<div style="background:rgba(232,255,71,.06);border:1px solid rgba(232,255,71,.15);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--accent)">🏆 Best day this month: <strong>Day ${bestDay.label}</strong> with ${best} pomodoros (${bestDay.data.focusMins} focus mins)</div>` : ''}
+      ${bestDay && best > 0 ? `<div style="background:rgba(124,92,252,.06);border:1px solid rgba(124,92,252,.15);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--accent)">🏆 Best day this month: <strong>Day ${bestDay.label}</strong> with ${best} pomodoros (${bestDay.data.focusMins} focus mins)</div>` : ''}
       ${renderBarChart(days, 'label')}
       ${renderFocusBarChart(days, 'label')}`;
       }
@@ -4292,11 +4292,11 @@
 
     const EXAM_KEY = 'tf_exams';
     const EXAM_TYPES = {
-      'Mid-term': { bg: 'rgba(232,255,71,.15)', c: '#e8ff47' },
-      'End-term': { bg: 'rgba(255,107,107,.15)', c: '#ff6b6b' },
+      'Mid-term': { bg: 'rgba(124,92,252,.15)', c: '#7c5cfc' },
+      'End-term': { bg: 'rgba(255,107,107,.15)', c: '#f05b7a' },
       'Lab': { bg: 'rgba(107,179,255,.15)', c: '#6bb3ff' },
-      'Viva': { bg: 'rgba(107,255,212,.15)', c: '#6bffd4' },
-      'Assignment': { bg: 'rgba(255,170,107,.15)', c: '#ffaa6b' },
+      'Viva': { bg: 'rgba(107,255,212,.15)', c: '#4ecdc4' },
+      'Assignment': { bg: 'rgba(255,170,107,.15)', c: '#f0a04b' },
     };
 
     let EX = JSON.parse(localStorage.getItem(EXAM_KEY) || '[]');
