@@ -2415,7 +2415,6 @@
       max-width: 900px;
       margin: 0 auto;
       width: 100%;
-      overflow-y: auto;
     }
 
     .eview.on {
@@ -2836,53 +2835,325 @@
         font-size: 0.72rem;
       }
     }
+
     /* Exam edit button */
-    .exam-edit-btn{background:none;border:none;cursor:pointer;font-size:0.8rem;padding:4px 6px;border-radius:6px;transition:all .15s;opacity:0;}
-    .exam-row:hover .exam-edit-btn{opacity:1;}
-    .exam-edit-btn:hover{background:rgba(232,255,71,.1);}
-    @media(hover:none){.exam-edit-btn{opacity:0.5;}}
+    .exam-edit-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: all .15s;
+      opacity: 0;
+    }
+
+    .exam-row:hover .exam-edit-btn {
+      opacity: 1;
+    }
+
+    .exam-edit-btn:hover {
+      background: rgba(232, 255, 71, .1);
+    }
+
+    @media(hover:none) {
+      .exam-edit-btn {
+        opacity: 0.5;
+      }
+    }
 
     /* ── HABIT TRACKER ── */
-    .hview{display:none;padding:20px;max-width:1100px;margin:0 auto;width:100%;overflow-x:hidden;}
-    .hview.on{display:block;}
-    .habit-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:24px;}
-    .habit-form-title{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
-    .habit-form-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;align-items:end;}
-    .habit-field{display:flex;flex-direction:column;gap:5px;}
-    .habit-field label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-    .habit-input{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:9px 12px;color:var(--text);font-family:'Epilogue',sans-serif;font-size:0.85rem;outline:none;transition:border-color .15s;width:100%;}
-    .habit-input:focus{border-color:var(--accent);}
-    .habit-input::placeholder{color:var(--muted2);}
-    .habit-add-btn{background:var(--accent);border:none;border-radius:10px;padding:10px 18px;color:#000;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;transition:transform .1s;white-space:nowrap;}
-    .habit-add-btn:hover{transform:scale(1.02);}
+    .hview {
+      display: none;
+      padding: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hview.on {
+      display: block;
+    }
+
+    .habit-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .habit-form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .habit-form-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .habit-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .habit-field label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .habit-input {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color .15s;
+      width: 100%;
+    }
+
+    .habit-input:focus {
+      border-color: var(--accent);
+    }
+
+    .habit-input::placeholder {
+      color: var(--muted2);
+    }
+
+    .habit-add-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: #000;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .1s;
+      white-space: nowrap;
+    }
+
+    .habit-add-btn:hover {
+      transform: scale(1.02);
+    }
+
     /* Grid tracker */
-    .habit-grid-wrap{overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
-    .habit-grid-wrap::-webkit-scrollbar{height:3px;}
-    .habit-grid-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
-    .habit-grid{display:flex;flex-direction:column;width:max-content;min-width:100%;}
-    .habit-grid-header{display:flex;}
-    .habit-grid-row{display:flex;}
-    .hg-cell{padding:6px 4px;text-align:center;font-size:0.72rem;border-bottom:1px solid var(--border);}
-    .hg-name{padding:8px 14px;font-size:0.82rem;font-weight:600;color:var(--text);border-bottom:1px solid var(--border);position:sticky;left:0;background:var(--bg);z-index:2;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
-    .hg-date{padding:6px 4px;font-size:0.6rem;color:var(--muted);text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;}
-    .hg-date.today-col{color:var(--accent);font-weight:700;}
-    .hg-date.out-range{opacity:0.25;}
-    .hg-check{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border2);background:none;cursor:pointer;margin:auto;display:flex;align-items:center;justify-content:center;font-size:0.75rem;transition:all .15s;color:transparent;}
-    .hg-check:hover{border-color:var(--accent3);}
-    .hg-check.checked{background:var(--accent3);border-color:var(--accent3);color:#000;}
-    .hg-check.out-range{opacity:0.2;pointer-events:none;cursor:default;}
-    .hg-actions{padding:6px 8px;border-bottom:1px solid var(--border);display:flex;gap:4px;align-items:center;position:sticky;right:0;background:var(--bg);}
-    .hg-del{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:0.75rem;padding:4px 6px;border-radius:5px;transition:all .15s;}
-    .hg-del:hover{color:var(--accent2);background:rgba(255,107,107,.1);}
-    .hg-streak{font-size:0.6rem;color:var(--accent4);font-weight:700;white-space:nowrap;}
-    .hg-pct{font-size:0.6rem;color:var(--accent3);font-weight:700;}
-    .habit-empty{text-align:center;padding:40px;color:var(--muted);font-size:0.85rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
-    .habit-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
-    .habit-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
-    .habit-stat-n{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;}
-    .habit-stat-l{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
-    @media(max-width:768px){.habit-form-grid{grid-template-columns:1fr 1fr;}.habit-stats-row{grid-template-columns:1fr 1fr;}.hview{padding:14px;}}
-    @media(max-width:480px){.habit-form-grid{grid-template-columns:1fr;}}
+    .habit-grid-wrap {
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .habit-grid-wrap::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .habit-grid-wrap::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 2px;
+    }
+
+    .habit-grid {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .habit-grid-header {
+      display: flex;
+    }
+
+    .habit-grid-row {
+      display: flex;
+    }
+
+    .hg-cell {
+      padding: 6px 4px;
+      text-align: center;
+      font-size: 0.72rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hg-name {
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      left: 0;
+      background: var(--bg);
+      z-index: 2;
+      white-space: nowrap;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hg-date {
+      padding: 6px 4px;
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .hg-date.today-col {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hg-date.out-range {
+      opacity: 0.25;
+    }
+
+    .hg-check {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border2);
+      background: none;
+      cursor: pointer;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all .15s;
+      color: transparent;
+    }
+
+    .hg-check:hover {
+      border-color: var(--accent3);
+    }
+
+    .hg-check.checked {
+      background: var(--accent3);
+      border-color: var(--accent3);
+      color: #000;
+    }
+
+    .hg-check.out-range {
+      opacity: 0.2;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .hg-actions {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      position: sticky;
+      right: 0;
+      background: var(--bg);
+    }
+
+    .hg-del {
+      background: none;
+      border: none;
+      color: var(--muted2);
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 4px 6px;
+      border-radius: 5px;
+      transition: all .15s;
+    }
+
+    .hg-del:hover {
+      color: var(--accent2);
+      background: rgba(255, 107, 107, .1);
+    }
+
+    .hg-streak {
+      font-size: 0.6rem;
+      color: var(--accent4);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hg-pct {
+      font-size: 0.6rem;
+      color: var(--accent3);
+      font-weight: 700;
+    }
+
+    .habit-empty {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .habit-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .habit-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .habit-stat-n {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .habit-stat-l {
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
+
+    @media(max-width:768px) {
+      .habit-form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .habit-stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hview {
+        padding: 14px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .habit-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -2963,7 +3234,8 @@
       <div class="modal-title">✏️ Edit Exam</div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div class="exam-field">
-          <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Exam Name</label>
+          <label style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Exam
+            Name</label>
           <input class="exam-input" id="editExamName" placeholder="Exam name">
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -2993,7 +3265,8 @@
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
-          <button class="auth-btn" onclick="closeEditExam()" style="justify-content:center;background:var(--surface3)">Cancel</button>
+          <button class="auth-btn" onclick="closeEditExam()"
+            style="justify-content:center;background:var(--surface3)">Cancel</button>
           <button class="exam-add-btn" onclick="saveEditExam()" style="margin-top:0">Save Changes</button>
         </div>
       </div>
@@ -3045,6 +3318,18 @@
           <input type="color" id="customBgInput" value="#0d0d12"
             style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer;border:none">
           +
+        </button>
+      </div>
+
+      <div class="theme-section-label" style="margin-top:10px">✏️ Text Color</div>
+      <div class="theme-presets">
+        <button class="theme-dot" data-text="#f0f0f0" style="background:#f0f0f0" title="Default"></button>
+        <button class="theme-dot" data-text="#ffffff" style="background:#ffffff" title="Pure White"></button>
+        <button class="theme-dot" data-text="#e0e0e0" style="background:#e0e0e0" title="Soft White"></button>
+        <button class="theme-dot" data-text="#c9d1d9" style="background:#c9d1d9" title="GitHub Grey"></button>
+        <button class="theme-dot theme-dot-custom" title="Custom Text">
+          <input type="color" id="customTextInput" value="#f0f0f0"
+            style="opacity:0;position:absolute;width:100%;height:100%;cursor:pointer;border:none">+
         </button>
       </div>
 
@@ -3344,27 +3629,28 @@
 
     // ── THEME PICKER ──
     const THEME_KEY = 'tf_theme';
-    const DEFAULT_THEME = { accent: '#7c5cfc', bg: '#0d0d12' };
+    const DEFAULT_THEME = { accent: '#7c5cfc', bg: '#0d0d12', text: '#f0f0f0' };
 
-    function applyTheme(accent, bg) {
+    function applyTheme(accent, bg, text) {
+      text = text || DEFAULT_THEME.text;
       const root = document.documentElement;
       root.style.setProperty('--accent', accent);
       root.style.setProperty('--bg', bg);
-      // Derive surface colors from bg
+      root.style.setProperty('--text', text);
       root.style.setProperty('--surface', adjustColor(bg, 10));
       root.style.setProperty('--surface2', adjustColor(bg, 18));
       root.style.setProperty('--surface3', adjustColor(bg, 25));
-      // Update borders with accent tint
       root.style.setProperty('--border', hexToRgba(accent, 0.08));
       root.style.setProperty('--border2', hexToRgba(accent, 0.15));
-      // Update meta theme-color
       document.querySelector('meta[name="theme-color"]').setAttribute('content', accent);
-      // Mark active dots
       document.querySelectorAll('.theme-dot[data-accent]').forEach(d => {
         d.classList.toggle('active', d.dataset.accent === accent);
       });
       document.querySelectorAll('.theme-dot[data-bg]').forEach(d => {
         d.classList.toggle('active', d.dataset.bg === bg);
+      });
+      document.querySelectorAll('.theme-dot[data-text]').forEach(d => {
+        d.classList.toggle('active', d.dataset.text === text);
       });
     }
 
@@ -3382,62 +3668,67 @@
       return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
     }
 
-    function saveTheme(accent, bg) {
-      localStorage.setItem(THEME_KEY, JSON.stringify({ accent, bg }));
+    function saveTheme(accent, bg, text) {
+      localStorage.setItem(THEME_KEY, JSON.stringify({ accent, bg, text: text || DEFAULT_THEME.text }));
     }
 
     function loadTheme() {
       const saved = JSON.parse(localStorage.getItem(THEME_KEY) || 'null');
       const t = saved || DEFAULT_THEME;
-      applyTheme(t.accent, t.bg);
+      applyTheme(t.accent, t.bg, t.text);
     }
 
     function resetTheme() {
       localStorage.removeItem(THEME_KEY);
-      applyTheme(DEFAULT_THEME.accent, DEFAULT_THEME.bg);
+      applyTheme(DEFAULT_THEME.accent, DEFAULT_THEME.bg, DEFAULT_THEME.text);
     }
 
     function getCurrentTheme() {
       return JSON.parse(localStorage.getItem(THEME_KEY) || JSON.stringify(DEFAULT_THEME));
     }
 
-    // Init theme on load
     loadTheme();
 
-    // Accent dot clicks
     document.querySelectorAll('.theme-dot[data-accent]').forEach(btn => {
       btn.addEventListener('click', () => {
-        const accent = btn.dataset.accent;
-        const bg = getCurrentTheme().bg;
-        applyTheme(accent, bg);
-        saveTheme(accent, bg);
+        const t = getCurrentTheme();
+        applyTheme(btn.dataset.accent, t.bg, t.text);
+        saveTheme(btn.dataset.accent, t.bg, t.text);
       });
     });
 
-    // BG dot clicks
     document.querySelectorAll('.theme-dot[data-bg]').forEach(btn => {
       btn.addEventListener('click', () => {
-        const bg = btn.dataset.bg;
-        const accent = getCurrentTheme().accent;
-        applyTheme(accent, bg);
-        saveTheme(accent, bg);
+        const t = getCurrentTheme();
+        applyTheme(t.accent, btn.dataset.bg, t.text);
+        saveTheme(t.accent, btn.dataset.bg, t.text);
       });
     });
 
-    // Custom accent color picker
-    document.getElementById('customAccentInput').addEventListener('input', e => {
-      const accent = e.target.value;
-      const bg = getCurrentTheme().bg;
-      applyTheme(accent, bg);
-      saveTheme(accent, bg);
+    document.querySelectorAll('.theme-dot[data-text]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = getCurrentTheme();
+        applyTheme(t.accent, t.bg, btn.dataset.text);
+        saveTheme(t.accent, t.bg, btn.dataset.text);
+      });
     });
 
-    // Custom bg color picker
+    document.getElementById('customAccentInput').addEventListener('input', e => {
+      const t = getCurrentTheme();
+      applyTheme(e.target.value, t.bg, t.text);
+      saveTheme(e.target.value, t.bg, t.text);
+    });
+
     document.getElementById('customBgInput').addEventListener('input', e => {
-      const bg = e.target.value;
-      const accent = getCurrentTheme().accent;
-      applyTheme(accent, bg);
-      saveTheme(accent, bg);
+      const t = getCurrentTheme();
+      applyTheme(t.accent, e.target.value, t.text);
+      saveTheme(t.accent, e.target.value, t.text);
+    });
+
+    document.getElementById('customTextInput').addEventListener('input', e => {
+      const t = getCurrentTheme();
+      applyTheme(t.accent, t.bg, e.target.value);
+      saveTheme(t.accent, t.bg, e.target.value);
     });
     function toggleUserMenu() {
       document.getElementById('userMenu').classList.toggle('open');
@@ -3660,8 +3951,8 @@
       document.getElementById('eview').classList.toggle('on', t === 'exam');
       document.getElementById('hview').classList.toggle('on', t === 'habit');
       if (t === 'pomodoro') { renderPomodoro(); if (window.innerWidth <= 768) closeSidebarMobile(); }
-      if (t === 'exam')     { renderExam();    if (window.innerWidth <= 768) closeSidebarMobile(); }
-      if (t === 'habit')    { renderHabit();   if (window.innerWidth <= 768) closeSidebarMobile(); }
+      if (t === 'exam') { renderExam(); if (window.innerWidth <= 768) closeSidebarMobile(); }
+      if (t === 'habit') { renderHabit(); if (window.innerWidth <= 768) closeSidebarMobile(); }
       saveNav();
     }
 
@@ -4868,40 +5159,40 @@
 
     // ── EDIT EXAM ──
     let _editExamId = null;
-    function openEditExam(id){
-      const e = EX.find(x=>x.id===id);
-      if(!e) return;
+    function openEditExam(id) {
+      const e = EX.find(x => x.id === id);
+      if (!e) return;
       _editExamId = id;
       document.getElementById('editExamName').value = e.name;
       document.getElementById('editExamType').value = e.type;
       document.getElementById('editExamDate').value = e.date;
-      document.getElementById('editExamTime').value = e.time||'';
+      document.getElementById('editExamTime').value = e.time || '';
       document.getElementById('editExamTimeTbd').checked = !e.time;
       document.getElementById('editExamTime').disabled = !e.time;
       document.getElementById('editExamBg').classList.add('show');
     }
-    function closeEditExam(){
+    function closeEditExam() {
       document.getElementById('editExamBg').classList.remove('show');
       _editExamId = null;
     }
-    function toggleEditTimeTbd(){
+    function toggleEditTimeTbd() {
       const tbd = document.getElementById('editExamTimeTbd').checked;
       document.getElementById('editExamTime').disabled = tbd;
-      if(tbd) document.getElementById('editExamTime').value='';
+      if (tbd) document.getElementById('editExamTime').value = '';
     }
-    function saveEditExam(){
-      if(!_editExamId) return;
-      const idx = EX.findIndex(x=>x.id===_editExamId);
-      if(idx===-1) return;
+    function saveEditExam() {
+      if (!_editExamId) return;
+      const idx = EX.findIndex(x => x.id === _editExamId);
+      if (idx === -1) return;
       const name = document.getElementById('editExamName').value.trim();
       const date = document.getElementById('editExamDate').value;
       const type = document.getElementById('editExamType').value;
-      const tbd  = document.getElementById('editExamTimeTbd').checked;
+      const tbd = document.getElementById('editExamTimeTbd').checked;
       const time = tbd ? null : document.getElementById('editExamTime').value;
-      if(!name){ showToastMsg('⚠️ Exam name required'); return; }
-      if(!date){ showToastMsg('⚠️ Date required'); return; }
-      EX[idx] = {...EX[idx], name, date, type, time, tbd};
-      EX.sort((a,b)=>parseLocalDate(a.date)-parseLocalDate(b.date));
+      if (!name) { showToastMsg('⚠️ Exam name required'); return; }
+      if (!date) { showToastMsg('⚠️ Date required'); return; }
+      EX[idx] = { ...EX[idx], name, date, type, time, tbd };
+      EX.sort((a, b) => parseLocalDate(a.date) - parseLocalDate(b.date));
       saveExams();
       closeEditExam();
       renderExam();
@@ -4912,44 +5203,44 @@
     // ── HABIT TRACKER ENGINE ──
     // ══════════════════════════════════════════
     const HABIT_KEY = 'tf_habits';
-    let HB = JSON.parse(localStorage.getItem(HABIT_KEY)||'[]');
+    let HB = JSON.parse(localStorage.getItem(HABIT_KEY) || '[]');
 
-    function saveHabits(){
+    function saveHabits() {
       localStorage.setItem(HABIT_KEY, JSON.stringify(HB));
     }
 
-    function addHabit(){
-      const name  = document.getElementById('habitName').value.trim();
+    function addHabit() {
+      const name = document.getElementById('habitName').value.trim();
       const start = document.getElementById('habitStart').value;
-      const end   = document.getElementById('habitEnd').value;
-      if(!name)  { showToastMsg('⚠️ Enter habit name'); return; }
-      if(!start) { showToastMsg('⚠️ Select start date'); return; }
-      if(!end)   { showToastMsg('⚠️ Select end date'); return; }
-      if(start > end){ showToastMsg('⚠️ End date must be after start'); return; }
-      HB.push({ id:uid(), name, start, end, checks:{} });
+      const end = document.getElementById('habitEnd').value;
+      if (!name) { showToastMsg('⚠️ Enter habit name'); return; }
+      if (!start) { showToastMsg('⚠️ Select start date'); return; }
+      if (!end) { showToastMsg('⚠️ Select end date'); return; }
+      if (start > end) { showToastMsg('⚠️ End date must be after start'); return; }
+      HB.push({ id: uid(), name, start, end, checks: {} });
       saveHabits();
-      document.getElementById('habitName').value='';
-      document.getElementById('habitStart').value='';
-      document.getElementById('habitEnd').value='';
+      document.getElementById('habitName').value = '';
+      document.getElementById('habitStart').value = '';
+      document.getElementById('habitEnd').value = '';
       renderHabit();
       showToastMsg('✅ Habit added!');
     }
 
-    function delHabit(id){
-      HB = HB.filter(h=>h.id!==id);
+    function delHabit(id) {
+      HB = HB.filter(h => h.id !== id);
       saveHabits();
       renderHabit();
     }
 
-    function toggleHabitCheck(hid, dateStr){
-      const h = HB.find(x=>x.id===hid);
-      if(!h) return;
+    function toggleHabitCheck(hid, dateStr) {
+      const h = HB.find(x => x.id === hid);
+      if (!h) return;
       h.checks[dateStr] = !h.checks[dateStr];
-      if(!h.checks[dateStr]) delete h.checks[dateStr];
+      if (!h.checks[dateStr]) delete h.checks[dateStr];
       saveHabits();
       // Surgical update — just toggle the button class
-      const btn = document.getElementById('hc-'+hid+'-'+dateStr);
-      if(btn){
+      const btn = document.getElementById('hc-' + hid + '-' + dateStr);
+      if (btn) {
         btn.classList.toggle('checked', !!h.checks[dateStr]);
         btn.textContent = h.checks[dateStr] ? '✓' : '';
       }
@@ -4957,34 +5248,34 @@
       updateHabitRowStats(h);
     }
 
-    function updateHabitRowStats(h){
-      const {streak, pct} = calcHabitStats(h);
-      const sk = document.getElementById('hstreak-'+h.id);
-      const sp = document.getElementById('hpct-'+h.id);
-      if(sk) sk.textContent = '🔥 '+streak+' day streak';
-      if(sp) sp.textContent = pct+'% done';
+    function updateHabitRowStats(h) {
+      const { streak, pct } = calcHabitStats(h);
+      const sk = document.getElementById('hstreak-' + h.id);
+      const sp = document.getElementById('hpct-' + h.id);
+      if (sk) sk.textContent = '🔥 ' + streak + ' day streak';
+      if (sp) sp.textContent = pct + '% done';
     }
 
     // Parse YYYY-MM-DD safely without timezone shift
-    function parseLocalDate(str){
-      const [y,m,d] = str.split('-').map(Number);
-      return new Date(y, m-1, d);
+    function parseLocalDate(str) {
+      const [y, m, d] = str.split('-').map(Number);
+      return new Date(y, m - 1, d);
     }
 
-    function dateToKey(d){
-      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    function dateToKey(d) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
 
-    function calcHabitStats(h){
+    function calcHabitStats(h) {
       const start = parseLocalDate(h.start);
-      const end   = parseLocalDate(h.end);
-      const today = new Date(); today.setHours(0,0,0,0);
+      const end = parseLocalDate(h.end);
+      const today = new Date(); today.setHours(0, 0, 0, 0);
       const effectiveEnd = end < today ? end : today;
 
       // Total = full habit duration (start to end date)
       let totalDays = 0;
       const td = new Date(start);
-      while(td <= end){ totalDays++; td.setDate(td.getDate()+1); }
+      while (td <= end) { totalDays++; td.setDate(td.getDate() + 1); }
 
       // Done = how many days checked out of all assigned days
       let done = Object.keys(h.checks).filter(k => h.checks[k] && k >= h.start && k <= h.end).length;
@@ -4995,52 +5286,52 @@
       // Current streak — consecutive checked days going backwards from today (within range)
       let streak = 0;
       const s = new Date(effectiveEnd);
-      while(s >= start){
+      while (s >= start) {
         const k = dateToKey(s);
-        if(h.checks[k]) streak++;
+        if (h.checks[k]) streak++;
         else break;
-        s.setDate(s.getDate()-1);
+        s.setDate(s.getDate() - 1);
       }
 
-      return {streak, pct, done, total: totalDays};
+      return { streak, pct, done, total: totalDays };
     }
 
-    function getDaysArray(startStr, endStr){
-      const days=[];
+    function getDaysArray(startStr, endStr) {
+      const days = [];
       const d = parseLocalDate(startStr);
       const end = parseLocalDate(endStr);
-      while(d<=end){
+      while (d <= end) {
         days.push(dateToKey(d));
-        d.setDate(d.getDate()+1);
+        d.setDate(d.getDate() + 1);
       }
       return days;
     }
 
-    function renderHabit(){
+    function renderHabit() {
       const hv = document.getElementById('hview');
-      if(!hv) return;
+      if (!hv) return;
 
-      const todayObj = new Date(); todayObj.setHours(0,0,0,0);
+      const todayObj = new Date(); todayObj.setHours(0, 0, 0, 0);
       const today = dateToKey(todayObj);
 
       // Overall stats
       const totalHabits = HB.length;
-      const activeHabits = HB.filter(h=>h.start<=today && h.end>=today).length;
-      const completedToday = HB.filter(h=>{
-        return h.start<=today && h.end>=today && h.checks[today];
+      const activeHabits = HB.filter(h => h.start <= today && h.end >= today).length;
+      const completedToday = HB.filter(h => {
+        return h.start <= today && h.end >= today && h.checks[today];
       }).length;
-      const avgPct = HB.length>0 ? Math.round(HB.reduce((a,h)=>a+calcHabitStats(h).pct,0)/HB.length) : 0;
+      const avgPct = HB.length > 0 ? Math.round(HB.reduce((a, h) => a + calcHabitStats(h).pct, 0) / HB.length) : 0;
 
       // Build the grid columns = all unique dates across all habits
       // For display: show a sliding window (last 30 days or habit range, whichever is smaller)
       const allDays = new Set();
-      HB.forEach(h=>{
+      HB.forEach(h => {
         const days = getDaysArray(h.start, h.end);
-        days.forEach(d=>allDays.add(d));
+        days.forEach(d => allDays.add(d));
       });
       // Sort and limit to a reasonable window around today
       let days = [...allDays].sort();
-      if(days.length===0){
+      if (days.length === 0) {
         // No habits yet
         days = [];
       }
@@ -5050,45 +5341,45 @@
       // Header row — flex row, fixed cell widths match data rows
       gridHTML += `<div class="habit-grid-header">`;
       gridHTML += `<div class="hg-name" style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:700">Habit</div>`;
-      days.forEach(d=>{
-        const isToday = d===today;
+      days.forEach(d => {
+        const isToday = d === today;
         const dObj = parseLocalDate(d);
-        const label = `${['Su','Mo','Tu','We','Th','Fr','Sa'][dObj.getDay()]}<br>${dObj.getDate()}`;
-        gridHTML+=`<div class="hg-date${isToday?' today-col':''}" style="width:36px;min-width:36px">${label}</div>`;
+        const label = `${['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][dObj.getDay()]}<br>${dObj.getDate()}`;
+        gridHTML += `<div class="hg-date${isToday ? ' today-col' : ''}" style="width:36px;min-width:36px">${label}</div>`;
       });
-      gridHTML+=`<div class="hg-date" style="width:90px;min-width:90px;text-align:center">Stats</div>`;
-      gridHTML+=`</div>`;
+      gridHTML += `<div class="hg-date" style="width:90px;min-width:90px;text-align:center">Stats</div>`;
+      gridHTML += `</div>`;
 
       // Habit rows
-      if(HB.length===0){
+      if (HB.length === 0) {
         gridHTML += '';
       } else {
-        HB.forEach(h=>{
-          const {streak, pct} = calcHabitStats(h);
-          gridHTML+=`<div class="habit-grid-row">`;
-          gridHTML+=`<div class="hg-name" title="${esc(h.name)}">${esc(h.name)}<div style="font-size:0.55rem;color:var(--muted);margin-top:2px">${h.start} → ${h.end}</div></div>`;
-          days.forEach(d=>{
-            const inRange = d>=h.start && d<=h.end;
+        HB.forEach(h => {
+          const { streak, pct } = calcHabitStats(h);
+          gridHTML += `<div class="habit-grid-row">`;
+          gridHTML += `<div class="hg-name" title="${esc(h.name)}">${esc(h.name)}<div style="font-size:0.55rem;color:var(--muted);margin-top:2px">${h.start} → ${h.end}</div></div>`;
+          days.forEach(d => {
+            const inRange = d >= h.start && d <= h.end;
             const checked = !!h.checks[d];
-            gridHTML+=`<div class="hg-cell" style="width:36px;min-width:36px">
-              <button class="hg-check${checked?' checked':''}${!inRange?' out-range':''}"
+            gridHTML += `<div class="hg-cell" style="width:36px;min-width:36px">
+              <button class="hg-check${checked ? ' checked' : ''}${!inRange ? ' out-range' : ''}"
                 id="hc-${h.id}-${d}"
-                onclick="${inRange?`toggleHabitCheck('${h.id}','${d}')`:''}"
-              >${checked?'✓':''}</button>
+                onclick="${inRange ? `toggleHabitCheck('${h.id}','${d}')` : ''}"
+              >${checked ? '✓' : ''}</button>
             </div>`;
           });
-          gridHTML+=`<div class="hg-actions" style="width:90px;min-width:90px">
+          gridHTML += `<div class="hg-actions" style="width:90px;min-width:90px">
             <div>
               <div class="hg-streak" id="hstreak-${h.id}">🔥 ${streak}d</div>
               <div class="hg-pct" id="hpct-${h.id}">${pct}%</div>
             </div>
             <button class="hg-del" onclick="delHabit('${h.id}')">✕</button>
           </div>`;
-          gridHTML+=`</div>`;
+          gridHTML += `</div>`;
         });
       }
 
-      hv.innerHTML=`
+      hv.innerHTML = `
       <!-- STATS -->
       <div class="habit-stats-row">
         <div class="habit-stat"><div class="habit-stat-n" style="color:var(--accent)">${totalHabits}</div><div class="habit-stat-l">Total Habits</div></div>
@@ -5118,10 +5409,10 @@
       </div>
 
       <!-- GRID -->
-      ${HB.length===0
-        ? `<div class="habit-empty">No habits yet!<br><br>Add your first habit above — track daily reading, exercise, coding practice, anything you want to build consistently 🔥</div>`
-        : `<div class="habit-grid-wrap"><div class="habit-grid">${gridHTML}</div></div>`
-      }`;
+      ${HB.length === 0
+          ? `<div class="habit-empty">No habits yet!<br><br>Add your first habit above — track daily reading, exercise, coding practice, anything you want to build consistently 🔥</div>`
+          : `<div class="habit-grid-wrap"><div class="habit-grid">${gridHTML}</div></div>`
+        }`;
     }
 
     // ── REGISTER SERVICE WORKER (PWA) ──
@@ -5146,4 +5437,5 @@
     }
   </script>
 </body>
+
 </html>
